@@ -1,0 +1,10 @@
+Wire the GND pin of the Accelerometer 1 to Physical Pin 6 (GND)
+Wire the VCC pin of the Accelerometer 1 to Physical Pin 1 (3v3) 
+Wire the SDA pin of the Accelerometer 1 to Physical Pin 3 (SDA) 
+Wire the SCL pin of the Accelerometer 1 to Physical Pin 5 (SCL) 
+
+
+Wire the GND pin of the Accelerometer 2 to Physical Pin 9 (GND)
+Wire the VCC pin of the Accelerometer 2 to Physical Pin 17 (3v3) 
+Wire the SDA pin of the Accelerometer 2 to Physical Pin 3 (SDA) 
+Wire the SCL pin of the Accelerometer 2 to Physical Pin 5 (SCL) 

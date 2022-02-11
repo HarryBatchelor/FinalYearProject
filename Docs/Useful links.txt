@@ -1,0 +1,7 @@
+https://www.circuitbasics.com/how-to-set-up-a-web-server-using-arduino-and-esp8266-01/
+https://unofficialolympiccanoeslalom.wordpress.com/2012/07/24/the-all-seeing-eye-the-judge/
+https://www.canoeicf.com/sites/default/files/2018_module_1-judging_clinic_participant_version.pdf
+https://www.youtube.com/watch?v=PNbsyHocM2U&ab_channel=logMaker360 - Live temp reading python
+https://makezine.com/projects/beginner-project-a-remote-viewing-camera-with-raspberry-pi/ - Live camera feed
+https://github.com/EbenKouao/pi-camera-stream-flask/blob/master/camera.py
+ 
