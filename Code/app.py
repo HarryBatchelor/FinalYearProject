@@ -11,6 +11,7 @@ import os
 import board
 import busio
 import adafruit_adxl34x
+import smbus
 
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
