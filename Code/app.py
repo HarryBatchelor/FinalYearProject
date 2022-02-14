@@ -8,6 +8,10 @@ from camera import VideoCamera
 import time
 import threading
 import os
+import board
+import busio
+import adafruit_adxl34x
+
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 
@@ -28,6 +32,17 @@ def gen(camera):
 def video_feed():
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+#Accelerometer data
+@app.route('/accelerometer')
+def accelerometer():
+    bus4 = smbus.SMBus(4)
+    i2c = busio.I2C(board.SCL, board.SDA)
+    accelerometer = adafruit_adxl34x.ADXL345(i2c)
+    while True:
+        print("%f %f %f"%accelerometer.acceleration)
+        time.sleep(1)
+
 
 if __name__ == '__main__':
 
