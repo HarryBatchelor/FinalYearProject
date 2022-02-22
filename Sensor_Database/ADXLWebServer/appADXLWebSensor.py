@@ -5,7 +5,7 @@ import sqlite3
 # Retrieve data from database
 
 def getData():
-	conn=sqlite3.connect('../sensorsData.db')
+	conn=sqlite3.connect('../sensorsdata.db')
 	curs=conn.cursor()
 	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 10"):
 		time = str(row[0])
