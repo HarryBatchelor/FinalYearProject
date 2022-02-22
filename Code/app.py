@@ -35,19 +35,19 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 #Accelerometer data
-@app.route('/accelerometer')
-def accelerometer():
-    bus4 = smbus.SMBus(4)
-    i2c = busio.I2C(board.SCL, board.SDA)
-    accelerometer = adafruit_adxl34x.ADXL345(i2c)
-    while True:
-        return("%f %f %f"%accelerometer.acceleration)
-        time.sleep(1)
+# @app.route('/accelerometer')
+# def accelerometer():
+#     bus4 = smbus.SMBus(4)
+#     i2c = busio.I2C(board.SCL, board.SDA)
+#     accelerometer = adafruit_adxl34x.ADXL345(i2c)
+#     while True:
+#         return("%f %f %f"%accelerometer.acceleration)
+#         time.sleep(1)
 
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='192.168.0.144', debug=False)
     
 
 

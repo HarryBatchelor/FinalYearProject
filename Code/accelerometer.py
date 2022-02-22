@@ -72,7 +72,7 @@ value |= 0x08;
 bus4.write_byte_data(0x53, 0x31, value)
 bus4.write_byte_data(0x53, 0x2D, 0x08)
 
-def getAxes():
+def getAxes2():
     bytes = bus4.read_i2c_block_data(0x53, 0x32, 6)
         
     x2 = bytes[0] | (bytes[1] << 8)
