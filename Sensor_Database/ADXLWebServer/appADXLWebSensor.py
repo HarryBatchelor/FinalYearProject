@@ -11,7 +11,7 @@ def getData():
 		time = str(row[0])
 		x = row[1]
 		y = row[2]
-        z = row[3]
+		z = row[3]
 	conn.close()
 	return time, x, y, z
 # main route 
