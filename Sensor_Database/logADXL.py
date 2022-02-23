@@ -13,7 +13,11 @@ def getADXLdata():
 	x, y, z = accel.read()
 	
 	if x is not None and y is not None and z is not None:
-        logData(x, y, z)
+		#x= 
+		#y= 
+		#z= 
+		logData(x, y, z)
+
 # log sensor data on database
 def logData (x, y, z):
 
