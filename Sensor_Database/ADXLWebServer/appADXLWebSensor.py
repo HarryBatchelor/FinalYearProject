@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+from camera import VideoCamera
+import time
+import threading
+import os
 import sqlite3
+
+pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
+
+app = Flask(__name__)
 
 # Retrieve data from database
 
@@ -25,5 +32,22 @@ def index():
         'z': z
 	}
 	return render_template('index.html', **templateData)
+
+@app.route('/camera')
+def LiveStream():
+		return render_template('LiveStream.html')
+def gen(camera):
+	#get camera frame
+	while True:
+		frame = camera.get_frame()
+		yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@app.route('/vidoe_feed')
+def video_feed():
+	return Response(gen(pi_camera),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+					
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port=5000, debug=False)
