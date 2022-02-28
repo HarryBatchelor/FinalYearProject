@@ -4,14 +4,42 @@ import time
 import threading
 import os
 import sqlite3
+import Adafruit_ADXL345
 from matplotlib.figure import figure
 
 pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
 
 app = Flask(__name__)
 
-# Retrieve data from database
+dbname='sensordata.db'
+sampleFreq = 1 #time in seconds
 
+
+#get data from sensor
+def getADXLdata():
+	accel = Adafruit_ADXL345.ADXL345()
+
+	x, y, z = accel.read()
+	if x is not None and y is not None and z is not None:
+		return x, y, z
+
+def logData(x, y, z):
+	conn=sqlite3.connect(dbname)
+	curs=conn.cursor()
+
+	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?))", (x, y, z))
+	conn.commit()
+	conn.close()
+
+def main():
+	while True:
+		x, y, z = getADXLdata()
+		logData(x, y, z)
+		time.sleep(sampleFreq)
+
+
+# Retrieve data from database
+@app.route('/record')
 def getData():
 	conn=sqlite3.connect('../sensorsdata.db')
 	curs=conn.cursor()
