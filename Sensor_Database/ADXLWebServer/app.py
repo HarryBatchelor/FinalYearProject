@@ -5,6 +5,7 @@ import threading
 import os
 import sqlite3
 import Adafruit_ADXL345
+from matplotlib.figure import figure
 
 pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
 
@@ -78,4 +79,6 @@ def video_feed():
 
 					
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=5000, debug=False)
+   app.run(host='0.0.0.0', port=9000, debug=False)
+   
+   #192.168.0.144 192.168.0.129
