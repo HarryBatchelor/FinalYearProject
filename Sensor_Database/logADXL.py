@@ -9,16 +9,16 @@ sampleFreq = 1# time in seconds
 def getADXLdata():
 
 	accel = Adafruit_ADXL345.ADXL345(address=0x53, busnum=1)
-	
+
 
 	x, y, z = accel.read()
-	
-	
+
+
 	if x is not None and y is not None and z is not None:
-		
+
 		return x, y, z
 
-	
+
 
 # log sensor data on database
 def logData (x, y, z):
@@ -47,7 +47,7 @@ def logData2 (x2, y2, z2):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?))", (x2, y2, z2))
+	curs.execute("INSERT INTO ACC_data values(datetime('now'), (X2), (Y2), (Z2))", (x2, y2, z2))
 	conn.commit()
 	conn.close()
 
@@ -63,5 +63,3 @@ def main():
 
 # ------------ Execute program
 main()
-
-
