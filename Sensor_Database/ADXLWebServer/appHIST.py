@@ -5,7 +5,8 @@ import threading
 import os
 import sqlite3
 import Adafruit_ADXL345
-
+from matplotlib.figure import figure
+import io
 
 pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
 
