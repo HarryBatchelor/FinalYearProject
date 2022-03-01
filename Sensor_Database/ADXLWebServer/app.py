@@ -16,20 +16,20 @@ sampleFreq = 1 #time in seconds
 
 
 #get data from sensor
-def getADXLdata():
-	accel = Adafruit_ADXL345.ADXL345()
+# def getADXLdata():
+# 	accel = Adafruit_ADXL345.ADXL345()
 
-	x, y, z = accel.read()
-	if x is not None and y is not None and z is not None:
-		return x, y, z
+# 	x, y, z = accel.read()
+# 	if x is not None and y is not None and z is not None:
+# 		return x, y, z
 
-def logData(x, y, z):
-	conn=sqlite3.connect(dbname)
-	curs=conn.cursor()
+# def logData(x, y, z):
+# 	conn=sqlite3.connect(dbname)
+# 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?))", (x, y, z))
-	conn.commit()
-	conn.close()
+# 	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?))", (x, y, z))
+# 	conn.commit()
+# 	conn.close()
 
 def main():
 	while True:
@@ -50,15 +50,28 @@ def getData():
 		z = row[3]
 	conn.close()
 	return time, x, y, z
+def getData2():
+	conn=sqlite3.connect('../sensorsdata.db')
+	curs=conn.cursor()
+	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
+		x2 = row[1]
+		y2 = row[2]
+		z2 = row[3]
+	conn.close()
+	return x2, y2, z2
 # main route 
 @app.route("/")
 def index():	
 	time, x, y, z = getData()
+	x2, y2, z2 = getData2()
 	templateData = {
 		'time': time,
 		'x': x,
 		'y': y,
-        'z': z
+        'z': z,
+		'x2': x2,
+		'y2': y2,
+        'z2': z2
 	}
 	return render_template('index.html', **templateData)
 
