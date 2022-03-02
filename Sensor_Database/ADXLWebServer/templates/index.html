@@ -120,6 +120,15 @@
          overflow: hidden;
          background-color: Grey;
      }
+     table, th, td{
+       /* border: 1px solid black; */
+       border-collapse: collapse;
+       padding: 15px;
+       border-spacing: 30px;
+     }
+     tr{
+       border-bottom: 1px solid black;
+     }
 
 
      </style>
@@ -162,21 +171,27 @@
 
             </script>
           </div>
-          <h1>ADXL Sensor Data </h1>
+
 	<table>
-	<col span="2">
+    <!-- <th colspan="2"> -->
+      <caption>
+        <h1>ADXL Sensor Data </h1>
+      </caption>
+    <!-- </th> -->
 	<tr>
 	<th><h1>Sensor 1</h1></th>
 	<th><h1>Sensor 2</h1></th>
 	</tr>
 	<tr>
 	<td><h3> X ==>  {{ x  }} </h3></td>
-	<td><h3> Y ==>  {{ y  }} </h3></td>
-	<td><h3> Z ==>  {{ z  }} </h3></td>
-	</tr>
-	<tr>
 	<td><h3> X2 ==>  {{ x2  }} </h3></td>
-	<td><h3> Y2 ==>  {{ y2  }} </h3></td>
+	</tr>
+  <tr>
+    <td><h3> Y ==>  {{ y  }} </h3></td>
+    <td><h3> Y2 ==>  {{ y2  }} </h3></td>
+  </tr>
+	<tr>
+	<td><h3> Z ==>  {{ z  }} </h3></td>
 	<td><h3> Z2 ==>  {{ z2  }} </h3></td>
 	</tr>
 	</table>
