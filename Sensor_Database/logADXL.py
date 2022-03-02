@@ -3,7 +3,7 @@ import sqlite3
 import Adafruit_ADXL345
 
 dbname='sensorsdata.db'
-sampleFreq = 1# time in seconds
+sampleFreq = 0.5# time in seconds
 
 # get data from DHT sensor
 def getADXLdata():
@@ -59,6 +59,8 @@ def main():
 	while True:
 		x, y, z, x2, y2, z2 = getADXLdata() 
 		logData(x, y, z, x2, y2, z2)
+		print('X={0}, Y={1}, Z={2}'.format(x, y, z))
+		print('X2={0}, Y2={1}, Z2={2}'.format(x2, y2,z2))
 		time.sleep(sampleFreq)
 
 # ------------ Execute program
