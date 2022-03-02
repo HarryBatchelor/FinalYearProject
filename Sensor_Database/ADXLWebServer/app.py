@@ -33,8 +33,8 @@ sampleFreq = 1 #time in seconds
 
 def main():
 	while True:
-		x, y, z = getADXLdata()
-		logData(x, y, z)
+		x, y, z, x2, y2, z2 = getADXLdata()
+		logData(x, y, z, x2, y2, z2)
 		time.sleep(sampleFreq)
 
 
@@ -43,27 +43,20 @@ def main():
 def getData():
 	conn=sqlite3.connect('../sensorsdata.db')
 	curs=conn.cursor()
-	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 2"):
+	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		x = row[1]
 		y = row[2]
 		z = row[3]
+		x2 = row[4]
+		y2 = row[5]
+		z2 = row[6]
 	conn.close()
-	return time, x, y, z
-def getData2():
-	conn=sqlite3.connect('../sensorsdata.db')
-	curs=conn.cursor()
-	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
-		x2 = row[1]
-		y2 = row[2]
-		z2 = row[3]
-	conn.close()
-	return x2, y2, z2
+	return time, x, y, z, x2, y2, z2
 # main route 
 @app.route("/")
 def index():	
-	time, x, y, z = getData()
-	x2, y2, z2 = getData2()
+	time, x, y, z, x2, y2, z2 = getData()
 	templateData = {
 		'time': time,
 		'x': x,
@@ -75,15 +68,6 @@ def index():
 	}
 	return render_template('index.html', **templateData)
 
-@app.route('/camera')
-def LiveStream():
-		return render_template('LiveStream.html')
-def gen(camera):
-	#get camera frame
-	while True:
-		frame = camera.get_frame()
-		yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/video_feed')
 def video_feed():

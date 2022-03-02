@@ -1,6 +1,4 @@
 from matplotlib import pyplot as plt
-import pandas as pd
-from pandas import Series, DataFrame
 from scipy import stats
 
 sensor_data = pd.read_table('Data.csv', index_col=['timestamp'])
