@@ -2,13 +2,17 @@ import sqlite3, pandas, matplotlib.pyplot as plt
 
 dbname = 'sensorsdata.db'
 conn = sqlite3.connect(dbname)
-sql = """SELECT timestamp, x, y, z from ACC_data ORDER BY timestamp DESC LIMIT 10"""
+sql = """SELECT timestamp, X2, Y2, Z2, x, y ,z from ACC_data"""
+
 
 data = pandas.read_sql(sql, conn)
 
 plt.plot(data.timestamp, data.x, label = "X Coords")
 plt.plot(data.timestamp, data.y, label = "Y Coords")
 plt.plot(data.timestamp, data.z, label = "Z Coords")
+# plt.plot(data.timestamp, data.X2, label = "X 2 Coords")
+# plt.plot(data.timestamp, data.Y2, label = "Y 2 Coords")
+# plt.plot(data.timestamp, data.Z2, label = "Z 2 Coords")
 plt.legend()
-plt.title("Coords")
+plt.title("Right Pole")
 plt.show()
