@@ -1,30 +1,14 @@
-from matplotlib import pyplot as plt
-import matplotlib.dates as mdates
-import sqlite3
-import datetime
-from dateutil import parser
+import sqlite3, pandas, matplotlib.pyplot as plt
 
 dbname = 'sensorsdata.db'
 conn = sqlite3.connect(dbname)
-curs = conn.cursor()
+sql = """SELECT timestamp, x, y, z from ACC_data ORDER BY timestamp DESC LIMIT 10"""
 
-def read_from_db():
-    curs.execute('SELECT * FROM ACC_data')
-    data = curs.fetchall()
-    print(data)
-    for row in data:
-        print(row)
-        
-def graph_data():
-    curs.execute('SELECT time, x, y, z FROM ACC_data')
-    data = curs.fetchall()
-    
-    dates = []
-    values = []
-    
-    for row in data:
-        dates.append(parser.parse(row[0]))
-        values.append(row[1])
-        
-    plt.plot_date(dates, values, '-')
-    plt.show()
+data = pandas.read_sql(sql, conn)
+
+plt.plot(data.timestamp, data.x, label = "X Coords")
+plt.plot(data.timestamp, data.y, label = "Y Coords")
+plt.plot(data.timestamp, data.z, label = "Z Coords")
+plt.legend()
+plt.title("Coords")
+plt.show()
