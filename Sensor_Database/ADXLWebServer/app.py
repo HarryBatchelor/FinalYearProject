@@ -22,16 +22,6 @@ app = Flask(__name__)
 dbname='sensordata.db'
 sampleFreq = 1 #time in seconds
 
-sql = """SELECT timestamp, x, y, z from ACC_data ORDER BY timestamp DESC LIMIT 10"""
-data = pandas.read_sql(sql, conn)
-plt.plot(data.timestamp, data.x, label = "X Coords")
-plt.plot(data.timestamp, data.y, label = "Y Coords")
-plt.plot(data.timestamp, data.z, label = "Z Coords")
-plt.legend()
-plt.title("Coords")
-
-
-
 def main():
 	while True:
 		x, y, z, x2, y2, z2 = getADXLdata()
@@ -67,20 +57,22 @@ def index():
         'y2': y2,
         'z2': z2}
     return render_template('index.html', **templateData)
-@app.route('/plot.png')
-def PlotPNG():
-    fig = create_figure()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
-def create_figure():
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    xs = range(100)
-    ys = [random.randint(1,50) for x in xs]
-    axis.plot(xs, ys)
-    return fig
-
+@app.route('/DELETE')
+def Delete_data():
+    conn=sqlite3.connect('../sensorsdata.db')
+    curs=conn.cursor()
+    curs.execute("DELETE from ACC_data")
+    return render_template('index.html', **templateData)
+@app.route('/camera')
+def LiveStream():
+		return render_template('LiveStream.html')
+def gen(camera):
+	#get camera frame
+	while True:
+		frame = camera.get_frame()
+		yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+		
 @app.route('/video_feed')
 def video_feed():
 	return Response(gen(pi_camera),
