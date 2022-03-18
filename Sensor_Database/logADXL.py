@@ -20,15 +20,7 @@ def getADXLdata():
 
 		return x, y, z, x2, y2, z2
 
-#define second accelerometer
-# def getADXLdata2():
-# 	accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
-# 
-# 	x2, y2, z2 = accel2.read()
-# 
-# 	if x2 is not None and y2 is not None and z2 is not None:
-# 
-# 		return x2, y2, z2
+
 
 # log sensor data on database
 def logData (x, y, z, x2, y2, z2):
@@ -36,7 +28,7 @@ def logData (x, y, z, x2, y2, z2):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
+	curs.execute("INSERT INTO acc_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
 	conn.commit()
 	conn.close()
 
