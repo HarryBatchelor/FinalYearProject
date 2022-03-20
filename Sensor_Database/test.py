@@ -39,7 +39,7 @@ Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp DESC LIMIT 20 ;'''
 curs.execute(Ystatment)
 output4 = curs.fetchall()
 
-with open('test.csv', 'w', newline='') as csvfile:
+with open('test.csv', 'a', newline='') as csvfile:
 
     fieldnames = ['TIME','X', 'Y', 'Z']
 
