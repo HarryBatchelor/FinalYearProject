@@ -23,20 +23,20 @@ import sqlite3
 dbname="sensorsdata.db"
 conn=sqlite3.connect(dbname)
 curs=conn.cursor()
-TIMEstatment = '''SELECT timestamp FROM ACC_data ORDER BY timestamp DESC LIMIT 20 ;'''
+TIMEstatment = '''SELECT timestamp FROM ACC_data ORDER BY timestamp DESC LIMIT 200 ;'''
 curs.execute(TIMEstatment)
 output1 = curs.fetchall()
 
-Xstatment = '''SELECT x FROM ACC_data ORDER BY timestamp DESC LIMIT 20 ;'''
+Xstatment = '''SELECT x FROM ACC_data ORDER BY timestamp DESC LIMIT 200 ;'''
 curs.execute(Xstatment)
 output2 = curs.fetchall()
 
-Ystatment = '''SELECT Y FROM ACC_data ORDER BY timestamp DESC LIMIT 20 ;'''
+Ystatment = '''SELECT Y FROM ACC_data ORDER BY timestamp DESC LIMIT 200 ;'''
 curs.execute(Ystatment)
 output3 = curs.fetchall()
 
-Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp DESC LIMIT 20 ;'''
-curs.execute(Ystatment)
+Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp DESC LIMIT 200 ;'''
+curs.execute(Zstatment)
 output4 = curs.fetchall()
 
 with open('test.csv', 'a', newline='') as csvfile:

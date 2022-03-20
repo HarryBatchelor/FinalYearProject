@@ -16,8 +16,8 @@ with open('test.csv', 'r') as File:
         z.append(row[3])
 
 plt.plot(time, x, label = "X Coords")
-plt.plot(time, y, label = "y Coords")
-plt.plot(time, z, label = "z Coords")
+plt.plot(time, y, label = "Y Coords")
+plt.plot(time, z, label = "Z Coords")
 
 plt.legend()
 plt.title("HITS")

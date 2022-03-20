@@ -8,7 +8,7 @@ from matplotlib import style
 
 dbname = 'sensorsdata.db'
 conn = sqlite3.connect(dbname)
-sql = """SELECT timestamp, X2, Y2, Z2, x, y ,z from ACC_data ORDER BY timestamp"""
+sql = """SELECT timestamp, X2, Y2, Z2, x, y ,z from ACC_data ORDER BY timestamp DESC LIMIT 200 """
 
 
 data = pandas.read_sql(sql, conn)
