@@ -15,6 +15,8 @@ with open('test.csv', 'r') as File:
         y.append(row[2])
         z.append(row[3])
 
+
+
 plt.plot(time, x, label = "X Coords")
 plt.plot(time, y, label = "Y Coords")
 plt.plot(time, z, label = "Z Coords")
