@@ -57,12 +57,10 @@ def index():
         'y2': y2,
         'z2': z2}
     return render_template('index.html', **templateData)
-@app.route('/DELETE')
-def Delete_data():
-    conn=sqlite3.connect('../sensorsdata.db')
-    curs=conn.cursor()
-    curs.execute("DELETE from ACC_data")
-    return render_template('index.html', **templateData)
+@app.route('/my-link')
+def mylink():
+	print('I got clicked!')
+	return 'Click.'
 @app.route('/camera')
 def LiveStream():
 		return render_template('LiveStream.html')
