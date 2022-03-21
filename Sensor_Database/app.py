@@ -1,14 +1,12 @@
 import mimetypes
 from venv import create
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, redirect
 from camera import VideoCamera
 import time
 import threading
 import os
 import sqlite3
 import Adafruit_ADXL345
-import sys
-sys.path.append(os.path.abspath("/repos/FinalYearProject/Sensor_Database"))
 from SaveToCSV import PoleHit
 
 pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
@@ -42,7 +40,7 @@ def index():
 def CSVOutput():
 	PoleHit()
 	print('I got clicked!')
-	return 'Check CSV.'
+	return redirect('/', code=302)
 
 @app.route('/camera')
 def LiveStream():
