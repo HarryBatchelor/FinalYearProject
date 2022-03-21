@@ -57,9 +57,9 @@ with open('test.csv', 'a', newline='') as csvfile:
     thewriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
     thewriter.writeheader()
-    for values in output1:
-        thewriter.writerow({'TIME': values, 'X': values})
-    # for x in output2:
+    for time in output1:
+        thewriter.writerow({'TIME': time})
+    for x in output2:
     #     thewriter.writerow({'X': x})
     # for y in output3:
     #     thewriter.writerow({'Y': y})
