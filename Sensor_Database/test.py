@@ -17,27 +17,38 @@
 
 
 import csv
-import time
 import sqlite3
 
 dbname="sensorsdata.db"
 conn=sqlite3.connect(dbname)
 curs=conn.cursor()
-TIMEstatment = '''SELECT timestamp FROM ACC_data ORDER BY timestamp ;'''
+TIMEstatment = '''SELECT timestamp, x, y, z FROM ACC_data ORDER BY timestamp ;'''
 curs.execute(TIMEstatment)
 output1 = curs.fetchall()
 
-Xstatment = '''SELECT x FROM ACC_data ORDER BY timestamp  ;'''
-curs.execute(Xstatment)
-output2 = curs.fetchall()
+# Xstatment = '''SELECT x FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Xstatment)
+# output2 = curs.fetchall()
 
-Ystatment = '''SELECT Y FROM ACC_data ORDER BY timestamp  ;'''
-curs.execute(Ystatment)
-output3 = curs.fetchall()
+# Ystatment = '''SELECT Y FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Ystatment)
+# output3 = curs.fetchall()
 
-Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp  ;'''
-curs.execute(Zstatment)
-output4 = curs.fetchall()
+# Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Zstatment)
+# output4 = curs.fetchall()
+
+# X2statment = '''SELECT x2 FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Xstatment)
+# output2 = curs.fetchall()
+
+# Y2statment = '''SELECT Y2 FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Y2statment)
+# output3 = curs.fetchall()
+
+# Zstatment = '''SELECT Z FROM ACC_data ORDER BY timestamp  ;'''
+# curs.execute(Zstatment)
+# output4 = curs.fetchall()
 
 with open('test.csv', 'a', newline='') as csvfile:
 
@@ -46,11 +57,11 @@ with open('test.csv', 'a', newline='') as csvfile:
     thewriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
     thewriter.writeheader()
-    for timestamp in output1:
-        thewriter.writerow({'TIME': timestamp})
-    for x in output2:
-        thewriter.writerow({'X': x})
-    for y in output3:
-        thewriter.writerow({'Y': y})
-    for z in output4:
-        thewriter.writerow({'Z': z})
+    for values in output1:
+        thewriter.writerow({'TIME': values, 'X': values})
+    # for x in output2:
+    #     thewriter.writerow({'X': x})
+    # for y in output3:
+    #     thewriter.writerow({'Y': y})
+    # for z in output4:
+    #     thewriter.writerow({'Z': z})
