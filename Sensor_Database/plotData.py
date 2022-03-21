@@ -15,8 +15,8 @@ data = pandas.read_sql(sql, conn)
 
 
 plt.plot(data.timestamp, data.x, label = "X Coords")
-plt.plot(data.timestamp, data.y, label = "Y Coords")
-plt.plot(data.timestamp, data.z, label = "Z Coords")
+# plt.plot(data.timestamp, data.y, label = "Y Coords")
+# plt.plot(data.timestamp, data.z, label = "Z Coords")
 # plt.plot(data.timestamp, data.X2, label = "X 2 Coords")
 # plt.plot(data.timestamp, data.Y2, label = "Y 2 Coords")
 # plt.plot(data.timestamp, data.Z2, label = "Z 2 Coords")
