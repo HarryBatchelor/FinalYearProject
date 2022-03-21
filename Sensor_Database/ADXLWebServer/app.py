@@ -7,13 +7,7 @@ import threading
 import os
 import sqlite3
 import Adafruit_ADXL345
-import pandas
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import io
-import random
-
+from SaveToCSV import PoleHit
 
 pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
 
@@ -28,22 +22,6 @@ def main():
 		logData(x, y, z, x2, y2, z2)
 		time.sleep(sampleFreq)
 
-
-# Retrieve data from database
-@app.route('/record')
-def getData():
-	conn=sqlite3.connect('../sensorsdata.db')
-	curs=conn.cursor()
-	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
-		time = str(row[0])
-		x = row[1]
-		y = row[2]
-		z = row[3]
-		x2 = row[4]
-		y2 = row[5]
-		z2 = row[6]
-	conn.close()
-	return time, x, y, z, x2, y2, z2
 # main route 
 @app.route("/")
 def index():
@@ -57,10 +35,13 @@ def index():
         'y2': y2,
         'z2': z2}
     return render_template('index.html', **templateData)
+
 @app.route('/SaveToCSV/')
-def CSV():
+def CSVOutput():
+	PoleHit()
 	print('I got clicked!')
-	return 'Click.'
+	return 'Check CSV.'
+
 @app.route('/camera')
 def LiveStream():
 		return render_template('LiveStream.html')
