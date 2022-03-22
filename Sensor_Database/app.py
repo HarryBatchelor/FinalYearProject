@@ -1,10 +1,6 @@
-import mimetypes
-from venv import create
 from flask import Flask, render_template, request, Response, redirect
 from camera import VideoCamera
 import time
-import threading
-import os
 import sqlite3
 import Adafruit_ADXL345
 from SaveToCSV import PoleHit
