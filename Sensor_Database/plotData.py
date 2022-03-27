@@ -1,4 +1,6 @@
-import sqlite3, pandas, matplotlib.pyplot as plt
+import sqlite3
+import pandas
+import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
 
