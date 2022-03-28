@@ -28,7 +28,7 @@ def logData (x, y, z, x2, y2, z2):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO acc_data values(datetime('now'), (?), (?), (?), (?), (?), (?))",(x, y, z, x2, y2, z2))
+	curs.execute("INSERT INTO acc_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
 	conn.commit()
 	conn.close()
 
@@ -49,7 +49,7 @@ def logData (x, y, z, x2, y2, z2):
 # main function
 def main():
 	while True:
-		x, y, z, x2, y2, z2= getADXLdata() 
+		x, y, z, x2, y2, z2 = getADXLdata() 
 		logData(x, y, z, x2, y2, z2)
 		print('X={0}, Y={1}, Z={2}'.format(x, y, z))
 		print('X2={0}, Y2={1}, Z2={2}'.format(x2, y2,z2))
