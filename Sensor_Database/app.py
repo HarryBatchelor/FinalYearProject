@@ -76,8 +76,5 @@ def CSVOutput():
 					
 if __name__ == "__main__":
    app.run(host='192.168.0.150', port=5000, debug=False)
-   
-   #192.168.0.144 192.168.0.129
-
 
 
