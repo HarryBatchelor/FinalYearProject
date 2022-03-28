@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, Response, redirect
-from camera import VideoCamera
+# from camera import VideoCamera
 import time
 import sqlite3
 import Adafruit_ADXL345
 from SaveToCSV import PoleHit
 
 
-pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
+# pi_camera = VideoCamera(flip = False) # flip pi camera if upside down
 
 app = Flask(__name__)
 
@@ -53,20 +53,20 @@ def CSV():
     PoleHit()
     print('I got clicked!')
     return redirect('/', code=302)
-@app.route('/camera')
-def LiveStream():
-		return render_template('LiveStream.html')
-def gen(camera):
-	#get camera frame
-	while True:
-		frame = camera.get_frame()
-		yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-		
-@app.route('/video_feed')
-def video_feed():
-	return Response(gen(pi_camera),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# @app.route('/camera')
+# def LiveStream():
+# 		return render_template('LiveStream.html')
+# def gen(camera):
+# 	#get camera frame
+# 	while True:
+# 		frame = camera.get_frame()
+# 		yield (b'--frame\r\n'
+#                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+# 		
+# @app.route('/video_feed')
+# def video_feed():
+# 	return Response(gen(pi_camera),
+#                     mimetype='multipart/x-mixed-replace; boundary=frame')
 @app.route('/SaveToCSV/')
 def CSVOutput():
 	PoleHit()
@@ -75,7 +75,7 @@ def CSVOutput():
 
 					
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=9000, debug=False)
+   app.run(host='192.168.0.150', port=5000, debug=False)
    
    #192.168.0.144 192.168.0.129
 
