@@ -26,15 +26,15 @@ def getData():
 	conn=sqlite3.connect('sensorsdata.db')
 	curs=conn.cursor()
 	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
-        time = str(row[0])
-        x = row[1]
-        y = row[2]
-        z = row[3]
-        x2 = row[4]
-        y2 = row[5]
-        z2 = row[6]
-        conn.close()
-    return time, x, y, z, x2, y2, z2
+		time = str(row[0])
+		x = row[1]
+		y = row[2]
+		z = row[3]
+		x2 = row[4]
+		y2 = row[5]
+		z2 = row[6]
+		conn.close()
+	return time, x, y, z, x2, y2, z2
 # main route 
 @app.route("/")
 def index():
