@@ -3,7 +3,7 @@ from camera import VideoCamera
 from time import sleep 
 import sqlite3
 import Adafruit_ADXL345
-from SaveToCSV import PoleHit
+from SaveToCSV import PoleHitRIGHT, PoleHitLEFT
 
 
 # pi_camera = VideoCamera(flip = False) flip pi camera if upside down
@@ -50,11 +50,11 @@ def index():
         'y2': y2,
         'z2': z2}
     return render_template('index.html', **templateData)
-# @app.route('/SaveToCSV/')
-# def CSV():
-#     PoleHit()
-#     print('I got clicked!')
-#     return redirect('/', code=302)
+@app.route('/SaveToCSVLEFT/')
+def CSVLEFT():
+    PoleHitLEFT()
+    print('I got clicked LEFT!')
+    return redirect('/', code=302)
 # @app.route('/camera')
 # def LiveStream():
 # 		return render_template('LiveStream.html')
@@ -69,11 +69,17 @@ def index():
 # def video_feed():
 # 	return Response(gen(pi_camera),
 #                     mimetype='multipart/x-mixed-replace; boundary=frame')
-@app.route('/SaveToCSV/')
+@app.route('/SaveToCSVRIGHT/')
 def CSVOutput():
-	PoleHit()
-	print('I got clicked!')
+	PoleHitRIGHT()
+	print('I got clicked RIGHT!')
 	return redirect('/', code=302)
+
+@app.route('/SaveToCSVLEFT/')
+def CSVLEFT():
+    PoleHitLEFT()
+    print('I got clicked LEFT!')
+    return redirect('/', code=302)
 
 					
 if __name__ == "__main__":
