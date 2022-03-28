@@ -50,11 +50,7 @@ def index():
         'y2': y2,
         'z2': z2}
     return render_template('index.html', **templateData)
-@app.route('/SaveToCSVLEFT/')
-def CSVLEFT():
-    PoleHitLEFT()
-    print('I got clicked LEFT!')
-    return redirect('/', code=302)
+
 # @app.route('/camera')
 # def LiveStream():
 # 		return render_template('LiveStream.html')
