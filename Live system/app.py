@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask,render_template,url_for,request,redirect, make_response
 import random
 import json
@@ -17,10 +16,10 @@ def data():
 
     data = [time() *1000, Tempreature, Humidity]
 
-    response = make_response9json.dumps(data))
+    response = make_response(json.dumps(data))
     response.content_type = 'application/json'
 
     return response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='192.168.0.150', port=5000, debug=True)
