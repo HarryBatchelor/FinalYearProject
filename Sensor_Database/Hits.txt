@@ -1,0 +1,27 @@
+18.26.08 right
+18.27.05 right 
+18.27.05 left ?
+18.28.03 right
+18.28.59 right
+18.34.33 right
+18.35.02 right
+18.35.56 right
+18.36.31 right
+18.36.56 right
+18.40.15 left
+18.44.06 right 
+18.47.49 right
+18.49.20
+18.54.30
+19.09.4 arm
+19.12.56 head YES
+19 .13.09
+19.14.00
+19.15.05 right
+15.11 right
+15.23 left
+15.40 left YES
+16.05 left YES
+16.38 right
+17.05 right
+17.32 left YES
