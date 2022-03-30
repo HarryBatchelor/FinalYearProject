@@ -20,7 +20,7 @@ def randomNumbergenerator():
     while not thread_stop_event.is_Set():
         number = round(random()*10, 3)
         print(number)
-        socketio.emit('newnumber', {'numbe':number}, namespace='/test')
+        socketio.emit('newnumber', {'number':number}, namespace='/test')
         socketio.sleep(5)
 
 @app.route('/')
