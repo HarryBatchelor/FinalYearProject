@@ -122,15 +122,15 @@
         {
             // X Coords
             var seriesX = chartX.series[0],
-                shiftX = seriesX.data.length > 500;
+                shiftX = seriesX.data.length > 200;
 
             // Y Coords
             var seriesY = chartY.series[0],
-                shiftY = seriesY.data.length > 500;
+                shiftY = seriesY.data.length > 200;
 
             // Y Coords
             var seriesZ = chartZ.series[0],
-                shiftZ = seriesZ.data.length > 500;
+                shiftZ = seriesZ.data.length > 200;
 
             // Add the Point
             // Time X
@@ -176,6 +176,7 @@
         chartX = new Highcharts.Chart({
             chart:
                 {
+                 
                 renderTo: 'data-x',
                 defaultSeriesType: 'area',
                 events: {
@@ -195,9 +196,10 @@
                 minPadding: 0.2,
                 maxPadding: 0.2,
                 title: {
-                    text: 'Value',
+                    text: 'Acceleration',
                     margin: 80
                         }
+              
                      },
             series: [{
                 color : '#c23d23',
@@ -211,6 +213,7 @@
          chartY = new Highcharts.Chart({
                 chart:
                     {
+                        
                         renderTo: 'data-y',
                         defaultSeriesType: 'area',
                         events: {
