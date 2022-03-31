@@ -2,6 +2,8 @@ import csv
 import sqlite3
 import pandas as pd
 
+
+
 #24 inputs every one second
 def PoleHitLEFT():
     dbname="sensorsdata.db"
@@ -24,7 +26,7 @@ def PoleHitLEFT():
     output4 = curs.fetchall()
     
     dictionary = {'TIME': output1, 'X': output2, 'Y': output3, 'Z': output4}
-    dataframe = pd.DataFrame(dictionary)
+    dataframe = pd.DataFrame(dictionary) 
     dataframe.to_csv('HitsLEFT.csv', index=False, mode='a')
 
 def PoleHitRIGHT():
@@ -51,6 +53,5 @@ def PoleHitRIGHT():
     dictionary = {'TIME': output1,'X2': output5, 'Y2': output6, 'Z2': output7}
     dataframe = pd.DataFrame(dictionary)
     dataframe.to_csv('HitsRIGHT.csv', index=False, mode='a')
-
 PoleHitRIGHT()
 PoleHitLEFT()
