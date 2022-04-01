@@ -27,7 +27,7 @@ def PoleHitLEFT():
     
     dictionary = {'TIME': output1, 'X': output2, 'Y': output3, 'Z': output4}
     dataframe = pd.DataFrame(dictionary) 
-    dataframe.to_csv('HitsLEFT.csv', index=False, mode='a')
+    dataframe.to_csv('CSV/HitsLEFT.csv', index=False, mode='a')
 
 def PoleHitRIGHT():
     dbname="sensorsdata.db"
@@ -52,6 +52,6 @@ def PoleHitRIGHT():
     
     dictionary = {'TIME': output1,'X2': output5, 'Y2': output6, 'Z2': output7}
     dataframe = pd.DataFrame(dictionary)
-    dataframe.to_csv('HitsRIGHT.csv', index=False, mode='a')
+    dataframe.to_csv('CSV/HitsRIGHT.csv', index=False, mode='a')
 PoleHitRIGHT()
 PoleHitLEFT()
