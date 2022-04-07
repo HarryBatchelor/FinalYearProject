@@ -1,19 +1,34 @@
-from cProfile import label
-from msilib.schema import Class
 import sqlite3
 import matplotlib.pyplot as plt
 import pandas
+import csv
 dbname= 'sensorsdata.db'
 conn=sqlite3.connect(dbname)
 conn.row_factory = lambda curs, row: row[0]
 curs = conn.cursor()
 curs.execute("SELECT TimeOfHit.timestamp FROM ACC_data INNER JOIN TimeOfHit ON ACC_data.timestamp = TimeOfHit.timestamp WHERE pole = 'LEFT';")
-leftResults = curs.fetchall()
-# print(leftResults)
+leftHits = curs.fetchall()
+# print(leftHits)
+conn.commit()
+conn.close()
 
-sql = """SELECT timestamp from ACC_data WHERE timestamp != {seq} ORDER BY timestamp DESC LIMIT 100;""".format(seq=','.join(['?']*len(leftResults))),
-conn.row_factory = lambda curs, row: row[0]
-curs.execute(sql,leftResults)
+for x in range(len(leftHits)):
+    conn=sqlite3.connect(dbname)
+    conn.row_factory = lambda curs, row: row[0]
+    curs = conn.cursor()
+    curs.execute("""SELECT timestamp, x, y, z from ACC_data WHERE timestamp != "2022-03-29 18:17:47" ORDER BY timestamp DESC LIMIT 100;""")
+    MoreLeftHits = curs.fetchall()
+    # print(MoreLeftHits)
+
+    f = open('sqlData.csv', 'a')
+    writer = csv.writer(f)
+    writer.writerow(MoreLeftHits)
+    f.close()  
+    # data = pandas.read_sql(sql, conn)
+    # print(data)
+    # curs.execute(sql,x)
+    # MoreLeftHits = curs.fetchall()
+    # print(MoreLeftHits)
 # data = pandas.read_sql(sql, conn)
 # print (data)
 # f = plt.figure()
