@@ -17,7 +17,7 @@ def main():
 def data():
     while True:
         x, y, z = accel.read()
-        # x2, y2, z2 = accel2.read()
+        x2, y2, z2 = accel2.read()
         data = [time()*1000, x, y, z]
         
         response = make_response(json.dumps(data))
@@ -27,4 +27,4 @@ def data():
         return response
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.150', port=5000, debug=True)
+    app.run(host='192.168.0.75', port=5000, debug=True)
