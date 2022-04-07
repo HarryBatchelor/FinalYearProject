@@ -7,7 +7,7 @@ import Adafruit_ADXL345
 
 app = Flask(__name__)
 accel = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
-# accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
+accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
@@ -27,4 +27,4 @@ def data():
         return response
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.75', port=5000, debug=True)
+    app.run(host='192.168.0.150', port=5000, debug=True)

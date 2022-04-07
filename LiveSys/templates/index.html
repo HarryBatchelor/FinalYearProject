@@ -36,37 +36,25 @@
   <br>
   <br>
 
-  
   <div class="container-fluid">
 
       <div class="row">
 
-          <div class="col-3 jumbotron p-2 mx-1">
+          <div class="col-5 jumbotron p-2 mx-1">
               <h1 class="sensor1"> X Coords: </h1>
           </div>
           <br>
 
-          <div class="col-3 jumbotron p-2 mx-1">
-              <h1 class="sensor2">Y Cords :</h1>
+          <div class="col-5 jumbotron p-2 mx-1">
+              <h1 class="sensor2">Y Coords :</h1>
           </div>
           <br>
 
-          <div class="col-3 jumbotron p-2 mx-1">
+          <div class="col-5 jumbotron p-2 mx-1">
             <h1 class="sensor3">Z Coords :</h1>
         </div>
         <br>
-        <div class="col-3 jumbotron p-2 mx-1">
-            <h1 class="sensor4">X2 Coords: </h1>
-        </div>
-        <br>
-        <div class="col-3 jumbotron p-2 mx-1">
-            <h1 class="sensor5">Y2 Coords: </h1>
-        </div>
-        <br>
-        <div class="col-3 jumbotron p-2 mx-1">
-            <h1 class="sensor6">Y2 Coords: </h1>
-        </div>
-        <br>
+
 
 
       </div>
@@ -90,7 +78,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-x">
+          <div class="container-fluid" id="data-X">
 
           </div>
       </div>
@@ -102,7 +90,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-y">
+          <div class="container-fluid" id="data-Y">
 
           </div>
       </div>
@@ -114,55 +102,16 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-z">
+          <div class="container-fluid" id="data-Z">
 
           </div>
       </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <div class="container-fluid">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="container-fluid" id="data-x2">
-
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
-<div class="container-fluid">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="container-fluid" id="data-y2">
-
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
-<div class="container-fluid">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="container-fluid" id="data-z2">
-
-        </div>
-    </div>
-</div>
-<br>
-<br>
-<br>
 
   <script>
     var chartX;
     var chartY;
     var chartZ;
-    var chartX2;
-    var chartY2;
-    var chartZ2;
 
     function requestData()
     {
@@ -173,26 +122,15 @@
         {
             // X Coords
             var seriesX = chartX.series[0],
-                shiftX = seriesX.data.length > 200;
+                shiftX = seriesX.data.length > 500;
 
             // Y Coords
             var seriesY = chartY.series[0],
-                shiftY = seriesY.data.length > 200;
+                shiftY = seriesY.data.length > 500;
 
-            // Z Coords
+            // Y Coords
             var seriesZ = chartZ.series[0],
-                shiftZ = seriesZ.data.length > 200;
-            // X2 Coords
-            var seriesX2 = chartX2.series[0],
-                shiftX2 = seriesX2.data.length > 200;
-
-            // Y2 Coords
-            var seriesY2 = chartY2.series[0],
-                shiftY2 = seriesY2.data.length > 200;
-
-            // Z2 Coords
-            var seriesZ2 = chartZ2.series[0],
-                shiftZ2 = seriesZ2.data.length > 200;
+                shiftZ = seriesZ.data.length > 500;
 
             // Add the Point
             // Time X
@@ -213,49 +151,18 @@
             data3.push(result[0]);
             data3.push(result[3]);
 
-            // Add the Point
-            // Time X2
-            var data4 = [];
-            data4.push(result[0]);
-            data4.push(result[4]);
-
-
-            // Add the Point
-            // Time Y
-            var data2 = [];
-            data5.push(result[0]);
-            data5.push(result[5]);
-
-            // Add the Point
-            // Time Z
-            var data3 = [];
-            data6.push(result[0]);
-            data6.push(result[6]);
-
 
             chartX.series[0].addPoint(data1, true, shiftX);
             chartY.series[0].addPoint(data2, true, shiftY);
             chartZ.series[0].addPoint(data3, true, shiftZ);
-            chartX2.series[0].addPoint(data4, true, shiftX2);
-            chartY2.series[0].addPoint(data5, true, shiftY2);
-            chartZ2.series[0].addPoint(data6, true, shiftZ2);
             $(".sensor1").text("");
-            $(".sensor1").text("X Coords : " + (data1[1]));
+            $(".sensor1").text("X Coords : ");
 
             $(".sensor2").text("");
-            $(".sensor2").text("Y Coords : " + (data2[1]));
+            $(".sensor2").text("Y Coords : ");
 
             $(".sensor3").text("");
-            $(".sensor3").text("Z Coords : " + (data3[1]));
-
-            $(".sensor4").text("");
-            $(".sensor4").text("X2 Coords : " + (data4[1]));
-
-            $(".sensor5").text("");
-            $(".sensor5").text("Y2 Coords : " + (data5[1]));
-
-            $(".sensor6").text("");
-            $(".sensor6").text("Z2 Coords : " + (data6[1]));
+            $(".sensor3").text("Z Coords : ");
 
             // call it again after one second
             setTimeout(requestData, 200);
@@ -269,8 +176,7 @@
         chartX = new Highcharts.Chart({
             chart:
                 {
-                 
-                renderTo: 'data-x',
+                renderTo: 'data-X',
                 defaultSeriesType: 'area',
                 events: {
                     load: requestData
@@ -289,10 +195,9 @@
                 minPadding: 0.2,
                 maxPadding: 0.2,
                 title: {
-                    text: 'Acceleration',
+                    text: 'Value',
                     margin: 80
                         }
-              
                      },
             series: [{
                 color : '#c23d23',
@@ -306,8 +211,7 @@
          chartY = new Highcharts.Chart({
                 chart:
                     {
-                        
-                        renderTo: 'data-y',
+                        renderTo: 'data-Y',
                         defaultSeriesType: 'area',
                         events: {
                             load: requestData
@@ -340,7 +244,7 @@
         chartZ = new Highcharts.Chart({
             chart:
                 {
-                renderTo: 'data-z',
+                renderTo: 'data-Z',
                 defaultSeriesType: 'area',
                 events: {
                     load: requestData
@@ -370,112 +274,8 @@
                 data: []
             }]
         });
-        // --------------Chart 3 Ends ----------------------------
-            chartX2 = new Highcharts.Chart({
-            chart:
-                {
-                 
-                renderTo: 'data-x2',
-                defaultSeriesType: 'area',
-                events: {
-                    load: requestData
-                        }
-                },
-            title:
-                {
-                text: 'X2 Coords'
-                },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150,
-                maxZoom: 20 * 1000
-                    },
-            yAxis: {
-                minPadding: 0.2,
-                maxPadding: 0.2,
-                title: {
-                    text: 'Acceleration',
-                    margin: 80
-                        }
-              
-                     },
-            series: [{
-                color : '#c23d23',
-                lineColor: '#303030',
-                name: 'X2 Coords',
-                data: []
-            }]
-        });
-         // --------------Chart 4 Ends - -----------------
 
-         chartY2 = new Highcharts.Chart({
-                chart:
-                    {
-                        
-                        renderTo: 'data-y2',
-                        defaultSeriesType: 'area',
-                        events: {
-                            load: requestData
-                        }
-                    },
-                title:
-                    {
-                        text: 'Y2 Coords'
-                    },
-                xAxis: {
-                    type: 'datetime',
-                    tickPixelInterval: 150,
-                    maxZoom: 20 * 1000
-                },
-                yAxis: {
-                    minPadding: 0.2,
-                    maxPadding: 0.2,
-                    title: {
-                        text: 'Value',
-                        margin: 80
-                    }
-                },
-                series: [{
-                    lineColor: '#1d82b8',
-                    name: 'Y2 Coords',
-                    data: []
-                }]
-            });
-            // --------------Chart 5 Ends ----------------------------
-        chartZ2 = new Highcharts.Chart({
-            chart:
-                {
-                renderTo: 'data-z2',
-                defaultSeriesType: 'area',
-                events: {
-                    load: requestData
-                        }
-                },
-            title:
-                {
-                text: 'Z2 Coords'
-                },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150,
-                maxZoom: 20 * 1000
-                    },
-            yAxis: {
-                minPadding: 0.2,
-                maxPadding: 0.2,
-                title: {
-                    text: 'Value',
-                    margin: 80
-                        }
-                     },
-            series: [{
-                color : '#c23d23',
-                lineColor: '#303030',
-                name: 'Z2 Coords',
-                data: []
-            }]
         });
-
     </script>
 
 </body>
