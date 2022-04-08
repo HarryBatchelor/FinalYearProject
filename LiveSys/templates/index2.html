@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html  lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+
+    <title>Flask App </title>
+    
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+
+    <div id="container"></div>
+</head>
+<style>
+#container {
+    min-width: 310px;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto
+}
+</style>
+
+<script>
+
+function getTemp() {
+    return Math.random() * 50
+}
+
+function getTemp2() {
+    return Math.random() * 100
+}
+
+function getData() {
+    var data = [],
+        time = (new Date()).getTime(),
+        i;
+
+    for (i = -200; i <= 0; i += 1) {
+        data.push({
+            x: time + i * 1000,
+            y: 0
+        });
+    }
+    return data;
+}
+
+Highcharts.stockChart('container', {
+    chart: {
+        backgroundColor: 'transparent',
+        events: {
+            load: function() {
+                var series1 = this.series[0],
+                    series2 = this.series[1];
+
+                setInterval(function() {
+                    var x = (new Date()).getTime(),
+                        y1 = Number(getTemp()),
+                        y2 = Number(getTemp2());
+
+                    series1.addPoint([x, y1], false, true);
+                    series2.addPoint([x, y2], true, true);
+
+                }, 1000);
+            }
+        }
+    },
+
+    xAxis: {
+        type: 'datetime',
+        labels: {
+            style: {},
+        },
+        tickPixelInterval: 200,
+    },
+
+    yAxis: {
+        type: 'linear',
+        labels: {
+            y: 5,
+            style: {},
+        },
+    },
+
+    series: [{
+        data: getData()
+    }, {
+        data: getData()
+    }]
+});
+</script>
+</html>
+

@@ -13,6 +13,10 @@ accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
 def main():
     return render_template('index.html')
 
+@app.route('/2', methods=["GET", "POST"])
+def main2():
+    return render_template('index2.html')
+
 @app.route('/data', methods=["GET", "POST"])
 def data():
     while True:
