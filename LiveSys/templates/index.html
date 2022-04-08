@@ -20,7 +20,7 @@
     <!--High CHART LIVE  -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/highcharts-more.js"></script>
-    <script src="http://code.highcharts.com/highstock.js"></script>\\
+    <script src="http://code.highcharts.com/highstocks.js"></script>\\
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
     <!--Gauge  -->
@@ -247,12 +247,11 @@
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
-        chartX = new Highcharts.stockChart('container',{
+        chartX = new Highcharts.Chart({
             chart:
                 {
                 renderTo: 'data-X',
                 defaultSeriesType: 'area',
-                bacgroundColor: 'transparent',
                 events: {
                     load: requestData
                         }
@@ -283,175 +282,175 @@
         });
          // --------------Chart 1 Ends - -----------------
 
-        //  chartY = new Highcharts.Chart({
-        //         chart:
-        //             {
-        //                 renderTo: 'data-Y',
-        //                 defaultSeriesType: 'area',
-        //                 events: {
-        //                     load: requestData
-        //                 }
-        //             },
-        //         title:
-        //             {
-        //                 text: 'Y Coords'
-        //             },
-        //         xAxis: {
-        //             type: 'datetime',
-        //             tickPixelInterval: 150,
-        //             maxZoom: 20 * 1000
-        //         },
-        //         yAxis: {
-        //             minPadding: 0.2,
-        //             maxPadding: 0.2,
-        //             title: {
-        //                 text: 'Value',
-        //                 margin: 80
-        //             }
-        //         },
-        //         series: [{
-        //             lineColor: '#1d82b8',
-        //             name: 'Y Coords',
-        //             data: []
-        //         }]
-        //     });
-        //     // --------------Chart 2 Ends ----------------------------
-        // chartZ = new Highcharts.Chart({
-        //     chart:
-        //         {
-        //         renderTo: 'data-Z',
-        //         defaultSeriesType: 'area',
-        //         events: {
-        //             load: requestData
-        //                 }
-        //         },
-        //     title:
-        //         {
-        //         text: 'Z Coords'
-        //         },
-        //     xAxis: {
-        //         type: 'datetime',
-        //         tickPixelInterval: 150,
-        //         maxZoom: 20 * 1000
-        //             },
-        //     yAxis: {
-        //         minPadding: 0.2,
-        //         maxPadding: 0.2,
-        //         title: {
-        //             text: 'Value',
-        //             margin: 80
-        //                 }
-        //              },
-        //     series: [{
-        //         color : '#c23d23',
-        //         lineColor: '#303030',
-        //         name: 'Z Coords',
-        //         data: []
-        //     }]
-        // });
-        // // --------------Chart 3 ends ----------------------------
-        // chartX2 = new Highcharts.Chart({
-        //     chart:
-        //         {
-        //         renderTo: 'data-X2',
-        //         defaultSeriesType: 'area',
-        //         events: {
-        //             load: requestData
-        //                 }
-        //         },
-        //     title:
-        //         {
-        //         text: 'X2 Coords'
-        //         },
-        //     xAxis: {
-        //         type: 'datetime',
-        //         tickPixelInterval: 150,
-        //         maxZoom: 20 * 1000
-        //             },
-        //     yAxis: {
-        //         minPadding: 0.2,
-        //         maxPadding: 0.2,
-        //         title: {
-        //             text: 'Value',
-        //             margin: 80
-        //                 }
-        //              },
-        //     series: [{
-        //         color : '#c23d23',
-        //         lineColor: '#303030',
-        //         name: 'X2 Coords',
-        //         data: []
-        //     }]
-        // });
-        //  // --------------Chart 4 Ends - -----------------
-        // chartY2 = new Highcharts.Chart({
-        //     chart:
-        //         {
-        //         renderTo: 'data-Y2',
-        //         defaultSeriesType: 'area',
-        //         events: {
-        //             load: requestData
-        //                 }
-        //         },
-        //     title:
-        //         {
-        //         text: 'Y2 Coords'
-        //         },
-        //     xAxis: {
-        //         type: 'datetime',
-        //         tickPixelInterval: 150,
-        //         maxZoom: 20 * 1000
-        //             },
-        //     yAxis: {
-        //         minPadding: 0.2,
-        //         maxPadding: 0.2,
-        //         title: {
-        //             text: 'Value',
-        //             margin: 80
-        //                 }
-        //              },
-        //     series: [{
-        //         color : '#c23d23',
-        //         lineColor: '#303030',
-        //         name: 'Y2 Coords',
-        //         data: []
-        //     }]
-        // });
-        //  // --------------Chart 5 Ends - -----------------
-        // chartZ2 = new Highcharts.Chart({
-        //     chart:
-        //         {
-        //         renderTo: 'data-Z2',
-        //         defaultSeriesType: 'area',
-        //         events: {
-        //             load: requestData
-        //                 }
-        //         },
-        //     title:
-        //         {
-        //         text: 'Z2 Coords'
-        //         },
-        //     xAxis: {
-        //         type: 'datetime',
-        //         tickPixelInterval: 150,
-        //         maxZoom: 20 * 1000
-        //             },
-        //     yAxis: {
-        //         minPadding: 0.2,
-        //         maxPadding: 0.2,
-        //         title: {
-        //             text: 'Value',
-        //             margin: 80
-        //                 }
-        //              },
-        //     series: [{
-        //         color : '#c23d23',
-        //         lineColor: '#303030',
-        //         name: 'Z2 Coords',
-        //         data: []
-        //     }]
-        // });
-        //  // --------------Chart 6 Ends - -----------------
+         chartY = new Highcharts.stockChart({
+                chart:
+                    {
+                        renderTo: 'data-Y',
+                        defaultSeriesType: 'area',
+                        events: {
+                            load: requestData
+                        }
+                    },
+                title:
+                    {
+                        text: 'Y Coords'
+                    },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150,
+                    maxZoom: 20 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value',
+                        margin: 80
+                    }
+                },
+                series: [{
+                    lineColor: '#1d82b8',
+                    name: 'Y Coords',
+                    data: []
+                }]
+            });
+            // --------------Chart 2 Ends ----------------------------
+        chartZ = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z Coords',
+                data: []
+            }]
+        });
+        // --------------Chart 3 ends ----------------------------
+        chartX2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-X2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'X2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'X2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 4 Ends - -----------------
+        chartY2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Y2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Y2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Y2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 5 Ends - -----------------
+        chartZ2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 6 Ends - -----------------
 
         });
     </script>
