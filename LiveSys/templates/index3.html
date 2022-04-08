@@ -29,7 +29,7 @@
     <div class="container-fluid">
         <!-- Example row of columns -->
         <div class="row">
-            <div class="container-fluid" id="data-temperature">
+            <div class="container-fluid" id="data-X">
 
             </div>
         </div>
@@ -43,7 +43,7 @@
     <div class="container-fluid">
         <!-- Example row of columns -->
         <div class="row">
-            <div class="container-fluid" id="data-humidity">
+            <div class="container-fluid" id="data-X2">
 
             </div>
         </div>
@@ -62,12 +62,12 @@
             var tm = requests.done(function (result)
             {
                 // Temperature
-                var seriesTemperature = chartTemperatue.series[0],
-                    shiftTemperature = seriesTemperature.data.length > 20;
+                var seriesX = chartX.series[0],
+                    shiftX = seriesX.data.length > 20;
 
                 // Humidity
-                var seriesHumidity = chartHumidity.series[0],
-                    shiftHumidity = seriesTemperature.data.length > 20;
+                var seriesX2 = chartX2.series[0],
+                    shiftX2 = seriesX2.data.length > 20;
 
                 // Add the Point
                 // Time Temperature\
@@ -96,10 +96,10 @@
         $(document).ready(function()
         {
             // --------------Chart 1 ----------------------------
-            chartTemperatue = new Highcharts.Chart({
+            chartX = new Highcharts.Chart({
                 chart:
                     {
-                    renderTo: 'data-temperature',
+                    renderTo: 'data-X',
                     defaultSeriesType: 'area',
                     events: {
                         load: requestData
@@ -107,7 +107,7 @@
                     },
                 title:
                     {
-                    text: 'Temperature'
+                    text: 'X'
                     },
                 xAxis: {
                     type: 'datetime',
@@ -125,16 +125,16 @@
                 series: [{
                     color : '#c23d23',
                     lineColor: '#303030',
-                    name: 'Temperature',
+                    name: 'X',
                     data: []
                 }]
             });
             // --------------Chart 1 Ends - -----------------
 
-            chartHumidity = new Highcharts.Chart({
+            chartX2 = new Highcharts.Chart({
                 chart:
                     {
-                        renderTo: 'data-humidity',
+                        renderTo: 'data-X2',
                         defaultSeriesType: 'area',
                         events: {
                             load: requestData
@@ -142,7 +142,7 @@
                     },
                 title:
                     {
-                        text: 'Humidity'
+                        text: 'X2'
                     },
                 xAxis: {
                     type: 'datetime',
@@ -159,7 +159,7 @@
                 },
                 series: [{
                     lineColor: '#1d82b8',
-                    name: 'Humidity',
+                    name: 'X2',
                     data: []
                 }]
             });
