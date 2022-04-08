@@ -11,19 +11,15 @@ curs.execute("SELECT TimeOfHit.timestamp FROM ACC_data INNER JOIN TimeOfHit ON A
 leftHits = curs.fetchall()
 # print(leftHits)
 
-
-qmarks = ",".join('?' * len(leftHits))
-print(qmarks)
-conn.row_factory = lambda curs, row: row[0]
-sql = (f"""SELECT timestamp, x, y, z from ACC_data WHERE x !=0 AND timestamp IN ({qmarks}) ORDER BY timestamp DESC LIMIT""")
-example = curs.execute(sql, leftHits).fetchall()
-print(example)
-# for x in range(len(leftHits)):
-#     conn=sqlite3.connect(dbname)
-#     conn.row_factory = lambda curs, row: row[0]
-#     curs = conn.cursor()
-#     curs.execute("""SELECT timestamp, x, y, z from ACC_data WHERE timestamp != "2022-03-29 18:17:47" AND x !="0" ORDER BY timestamp DESC LIMIT;""")
-#     MoreLeftHits = curs.fetchall()
+for x in range(len(leftHits)):
+    conn=sqlite3.connect(dbname)
+    conn.row_factory = lambda cursor, row: row[0]
+    c = conn.cursor()
+    hits = c.execute('SELECT * from ACC_data WHERE timestamp != (?) LIMIT 10', (leftHits,))
+    hits = c.fetchall()
+    print(hits)
+    # curs.execute("""SELECT timestamp, x, y, z from ACC_data WHERE timestamp != "2022-03-29 18:17:47" AND x !="0" ORDER BY timestamp DESC LIMIT;""")
+    # MoreLeftHits = curs.fetchall()
     # print(MoreLeftHits) 
     # data = pandas.read_sql(sql, conn)
     # print(data)
