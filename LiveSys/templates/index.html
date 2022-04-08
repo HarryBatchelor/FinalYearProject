@@ -30,6 +30,11 @@
 </head>
 
 <body>
+    <div class="jumbotron">
+        <h1 class="text-center text-white">Welcome to Sensor Visualization </h1>
+    </div>
+    <br>
+    <br>
   
 <style>
     .row{
@@ -120,17 +125,18 @@
             // Y Coords
             var seriesZ = chartZ.series[0],
                 shiftZ = seriesZ.data.length > 500;
+        
             // X2 Coords
             var seriesX2 = chartX2.series[0],
-                shiftX2 = seriesX2.data.length > 500;
+                shiftX2 = seriesX2.data2.length > 500;
             
             //Y2 Coords
             var seriesY2 = chartY2.series[0],
-                shiftY2 = seriesY2.data.length > 500;
+                shiftY2 = seriesY2.data2.length > 500;
             
             //Z2 Coords
             var seriesZ2 = chartZ2.series[0],
-                shiftZ2 = seriesZ2.data.length > 500;
+                shiftZ2 = seriesZ2.data2.length > 500;
 
             // Add the Point
             // Time X
@@ -177,23 +183,23 @@
             chartY2.series[0].addPoint(data5, true, shiftY2);
             chartZ2.series[0].addPoint(data6,true, shiftZ2);
 
-            $(".sensor1").text("");
-            $(".sensor1").text("X Coords : ");
+            // $(".sensor1").text("");
+            // $(".sensor1").text("X Coords : ");
 
-            $(".sensor2").text("");
-            $(".sensor2").text("Y Coords : ");
+            // $(".sensor2").text("");
+            // $(".sensor2").text("Y Coords : ");
 
-            $(".sensor3").text("");
-            $(".sensor3").text("Z Coords : ");
+            // $(".sensor3").text("");
+            // $(".sensor3").text("Z Coords : ");
 
-            $(".sensor4").text("");
-            $(".sensor4").text("X2 Coords : ");
+            // $(".sensor4").text("");
+            // $(".sensor4").text("X2 Coords : ");
 
-            $(".sensor5").text("");
-            $(".sensor5").text("Y2 Coords : ");
+            // $(".sensor5").text("");
+            // $(".sensor5").text("Y2 Coords : ");
 
-            $(".sensor6").text("");
-            $(".sensor6").text("Z2 Coords : ");
+            // $(".sensor6").text("");
+            // $(".sensor6").text("Z2 Coords : ");
 
             // call it again after one second
             setTimeout(requestData, 200);
