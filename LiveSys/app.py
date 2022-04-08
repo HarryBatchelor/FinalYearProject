@@ -15,7 +15,7 @@ def main():
 
 @app.route('/2', methods=["GET", "POST"])
 def main2():
-    return render_template('index2.html')
+    return render_template('index3.html')
 
 @app.route('/data', methods=["GET", "POST"])
 def data():

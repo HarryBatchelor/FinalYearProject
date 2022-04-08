@@ -35,6 +35,12 @@
     .row{
           justify-content: center;
       }
+    container {
+    min-width: 310px;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto
+}
   </style>
 
   <div class="container-fluid">
@@ -198,7 +204,7 @@
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
-        chartX = new Highcharts.stockChart({
+        chartX = new Highcharts.stockChart('container'{
             chart:
                 {
                 renderTo: 'data-X',
