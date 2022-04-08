@@ -1,4 +1,3 @@
-from cgitb import reset
 from flask import Flask,render_template,url_for,request,redirect, make_response
 import random
 import json
@@ -14,26 +13,18 @@ accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
 def main():
     return render_template('index.html')
 
-@app.route('/2', methods=["GET", "POST"])
-def main2():
-    return render_template('index3.html')
-
 @app.route('/data', methods=["GET", "POST"])
 def data():
     while True:
         x, y, z = accel.read()
         x2, y2, z2 = accel2.read()
         data = [time()*1000, x, y, z]
-        data2 = [time()*1000, x2, y2, z2]
         
         response = make_response(json.dumps(data))
-        response2 = make_response(json.dumps(data2))
 
         response.content_type = 'application/json'
-        response2.content_type = 'application/json'
 
-        return response, response2
-        
+        return response
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.75', port=5000, debug=True)
+    app.run(host='192.168.0.150', port=5000, debug=True)
