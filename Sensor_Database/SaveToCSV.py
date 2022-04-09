@@ -63,10 +63,10 @@ def PoleHitLEFT():
     conn.close()
 def PoleHitRIGHT():
     conn=sqlite3.connect(dbname)
-    curs = conn.cursor
+    curs = conn.cursor()
 
     curs.execute("INSERT INTO TimeOfHit values (datetime('now'), ('RIGHT'))")
     conn.commit()
     conn.close()
-# PoleHitRIGHT()
+PoleHitRIGHT()
 PoleHitLEFT()

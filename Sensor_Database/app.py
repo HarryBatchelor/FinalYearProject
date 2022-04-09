@@ -78,7 +78,7 @@ def CSVLEFT():
     return redirect('/', code=302)
 					
 if __name__ == "__main__":
-   app.run(host='192.168.124.15', port=5000, debug=False)
+   app.run(host='192.168.0.75', port=5000, debug=False)
    
 
 
