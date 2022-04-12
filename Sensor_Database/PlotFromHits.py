@@ -5,31 +5,27 @@ import pandas
 import csv
 from matplotlib.backends.backend_pdf import PdfPages
 import uuid
+# Connect to DB
 dbname= 'sensorsdata.db'
 conn=sqlite3.connect(dbname)
+# Set output to be a list
 conn.row_factory = lambda curs, row: row[0]
 curs = conn.cursor()
-curs.execute("SELECT DISTINCT TimeOfHit.timestamp FROM ACC_data INNER JOIN TimeOfHit ON ACC_data.timestamp = TimeOfHit.timestamp WHERE pole = 'LEFT' ;")
+curs.execute("SELECT DISTINCT TimeOfHit.timestamp FROM ACC_data INNER JOIN TimeOfHit ON ACC_data.timestamp = TimeOfHit.timestamp WHERE pole = 'LEFT' ;") #Execute SQL
 leftHits = curs.fetchall()
-# print(leftHits)
+
 uniquefilename = str(uuid.uuid4()) + '.pdf'
+
+#Collect the extended data for each timestamp above
 for x in leftHits:
-    # conn.row_factory = lambda cursor, row: row[0]
     c = conn.cursor()
-    hits = c.execute('SELECT x from ACC_data WHERE timestamp = (?) ORDER BY timestamp DESC LIMIT 10', (x,))
+    timestamp = c.execute('SELECT x from ACC_data WHERE timestamp = (?) ORDER BY timestamp DESC LIMIT 10', (x,))
+    # xs = c.execute('SELECT x FROM ACC_data WHERE ')
     hits = c.fetchall()
     print(hits)
-    # for times in leftHits:
-    #     fig = plt.figure()
-    #     plt.plot(hits) 
-    #     pdf = PdfPages(uniquefilename)
-    #     pdf.savefig(fig)
-    #     pdf.close()
-    # curs.execute("""SELECT timestamp, x, y, z from ACC_data WHERE timestamp != "2022-03-29 18:17:47" AND x !="0" ORDER BY timestamp DESC LIMIT;""")
-    # MoreLeftHits = curs.fetchall()
-    # print(MoreLeftHits) 
-    # data = pandas.read_sql(sql, conn)
-    # print(data)
-    # curs.execute(sql,x)
-    # MoreLeftHits = curs.fetchall()
-    # print(MoreLeftHits)
+    for plots in hits:    
+        fig = plt.figure()
+        plt.plot(hits) 
+        pdf = PdfPages(uniquefilename)
+        pdf.savefig(fig)
+        pdf.close()
