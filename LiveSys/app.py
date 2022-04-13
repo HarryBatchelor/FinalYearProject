@@ -11,6 +11,7 @@ from camera import VideoCamera
 app = Flask(__name__)
 accel = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
 accel2 = Adafruit_ADXL345.ADXL345(address=0x53, busnum=4)
+pi_camera = VideoCamera(flip=False)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
@@ -45,4 +46,4 @@ def video_feed():
 
 
 if __name__ == "__main__":
-    app.run(host='192.168.0.150', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
