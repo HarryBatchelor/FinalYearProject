@@ -1,5 +1,6 @@
 #Modified by smartbuilds.io
 #Date: 27.09.20
+#Desc: This scrtipt script..
 
 import cv2
 from imutils.video.pivideostream import PiVideoStream
