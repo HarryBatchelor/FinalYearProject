@@ -1,7 +1,135 @@
 <!DOCTYPE html>
 <html  lang="en" dir="ltr">
+    <style>
+
+        .jumbotron{
+            widows: 150px;
+            height: 220px;
+            justify-content: center;
+        }
+    
+        .row{
+            justify-content: center;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+         .navbar {
+           /* overflow: hidden; */
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+           margin: auto;
+           background-color: black;
+           opacity:0.6;
+        }
+    
+         .navbar a {
+           float: left;
+           display: block;
+           color: #f2f2f2;
+           text-align: center;
+           padding: 14px 16px;
+           text-decoration: none;
+           font-size: 17px;
+        }
+    
+         .navbar a:hover {
+    
+        }
+    
+         a:link{
+           color: black;
+        }
+    
+         .navbar a.active {
+           background-color: #4CAF50;
+           color: white;
+        }
+    
+         .main {
+           padding: 16px;
+           margin-bottom: 30px;
+        }
+    
+    
+         .camera-movement{
+           float: none;
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+        }
+    
+         .lights-button{
+             float: right;
+        }
+    
+         i.fa {
+           display: inline-block;
+           border-radius: 60px;
+           box-shadow: 0px 0px 2px #888;
+           padding: 0.5em 0.6em;
+        }
+    
+         img {
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+             width: 35%
+        }
+    
+         button {
+             background-color: Transparent;
+             background-repeat:no-repeat;
+             border: none;
+             cursor:pointer;
+             /* overflow: hidden; */
+             outline:none;
+        } 
+        //CSS
+         .camera-bg {
+           position: fixed;
+           top: 0;
+           left: 0;
+    
+           /* Preserve aspet ratio */
+           min-width: 100%;
+           min-height: 100%;
+    
+            /* Full height */
+           height: 100%;
+    
+    
+           /* Center and scale the image nicely */
+           background-position: center; 
+           background-repeat: no-repeat;
+           background-size: cover;
+    
+        } 
+        .top-right-logo {
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            font-size: 38px;
+            color: white;
+            opacity: 0.5;
+        }
+    
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            /* overflow: hidden; */
+            background-color: grey;
+        }
+      </style>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Flask App </title>
 
@@ -25,7 +153,8 @@
     <!--Gauge  -->
     <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
 
-
+    <!-- camera css -->
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>  
 </head>
 
 <body>
@@ -33,27 +162,13 @@
   <div class="jumbotron">
       <h1 class="text-center text-white">Welcome to Sensor Visualization </h1>
   </div>
+
   
 
-  <style>
-
-      .jumbotron{
-          widows: 150px;
-          height: 220px;
-          justify-content: center;
-      }
-
-      .row{
-          justify-content: center;
-      }
-
-
-  </style>
-
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-X">
+          <div class="container-fluid" id="data-left">
 
           </div>
       </div>
@@ -65,7 +180,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-Y">
+          <div class="container-fluid" id="data-right">
 
           </div>
       </div>
@@ -74,19 +189,19 @@
 <br>
 <br>
 
-  <div class="container-fluid">
-      <!-- Example row of columns -->
+  <!-- <div class="container-fluid">
+      Example row of columns
       <div class="row">
           <div class="container-fluid" id="data-Z">
 
           </div>
       </div>
-  </div>
+  </div> -->
 
   <script>
-    var chartX;
-    var chartY;
-    var chartZ;
+    var chartLeft;
+    var chartRight;
+    // var chartZ;
 
     function requestData()
     {
@@ -96,12 +211,12 @@
         var tm = requests.done(function (result)
         {
             // X Coords
-            var seriesX = chartX.series[0],
-                shiftX = seriesX.data.length > 500;
+            var seriesLeft = chartLeft.series[0],
+                shiftLeft = seriesLeft.data.length > 500;
 
-            // // Y Coords
-            // var seriesY = chartY.series[0],
-            //     shiftY = seriesY.data.length > 500;
+            // Y Coords
+            var seriesRight = chartRight.series[0],
+                shiftRight = seriesRight.data.length > 500;
 
             // // Y Coords
             // var seriesZ = chartZ.series[0],
@@ -122,14 +237,14 @@
 
             // Add the Point
             // Time Z
-            var data3 = [];
-            data3.push(result[0]);
-            data3.push(result[3]);
+            // var data3 = [];
+            // data3.push(result[0]);
+            // data3.push(result[3]);
 
 
-            chartX.series[0].addPoint(data1, true, shiftX);
-            chartY.series[0].addPoint(data2, true, shiftY);
-            chartZ.series[0].addPoint(data3, true, shiftZ);
+            chartLeft.series[0].addPoint(data1, true, shiftLeft);
+            chartRight.series[0].addPoint(data2, true, shiftRight);
+            // chartZ.series[0].addPoint(data3, true, shiftZ);
             
 
             // call it again after one second
@@ -141,11 +256,11 @@
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
-        chartX = new Highcharts.Chart({
+        chartLeft = new Highcharts.Chart({
             chart:
                 {
                 renderTo: 'data-X',
-                defaultSeriesType: 'area',
+                defaultSeriesType: 'line',
                 events: {
                     load: requestData
                         }
@@ -167,20 +282,27 @@
                     margin: 80
                         }
                      },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0,
+                 showInLegend: false
+            },
             series: [{
                 color : '#c23d23',
                 lineColor: '#303030',
                 name: 'X Coords',
-                data: [$value['x'], $value['y'], $value['z']]
+                data: [x,y,z]
             }]
         });
          // --------------Chart 1 Ends - -----------------
 
-         chartY = new Highcharts.Chart({
+         chartRight = new Highcharts.Chart({
                 chart:
                     {
                         renderTo: 'data-Y',
-                        defaultSeriesType: 'line',
+                        defaultSeriesType: 'area',
                         events: {
                             load: requestData
                         }
@@ -202,46 +324,53 @@
                         margin: 80
                     }
                 },
+                legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0,
+                 showInLegend: false
+            },
                 series: [{
                     lineColor: '#1d82b8',
                     name: 'Y Coords',
-                    data: []
+                    data: [x2,y2,z2]
                 }]
             });
             // --------------Chart 2 Ends ----------------------------
-        chartZ = new Highcharts.Chart({
-            chart:
-                {
-                renderTo: 'data-Z',
-                defaultSeriesType: 'line',
-                events: {
-                    load: requestData
-                        }
-                },
-            title:
-                {
-                text: 'Z Coords'
-                },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150,
-                maxZoom: 20 * 1000
-                    },
-            yAxis: {
-                minPadding: 0.2,
-                maxPadding: 0.2,
-                title: {
-                    text: 'Value',
-                    margin: 80
-                        }
-                     },
-            series: [{
-                color : '#c23d23',
-                lineColor: '#303030',
-                name: 'Z Coords',
-                data: []
-            }]
-        });
+        // chartZ = new Highcharts.Chart({
+        //     chart:
+        //         {
+        //         renderTo: 'data-Z',
+        //         defaultSeriesType: 'area',
+        //         events: {
+        //             load: requestData
+        //                 }
+        //         },
+        //     title:
+        //         {
+        //         text: 'Z Coords'
+        //         },
+        //     xAxis: {
+        //         type: 'datetime',
+        //         tickPixelInterval: 150,
+        //         maxZoom: 20 * 1000
+        //             },
+        //     yAxis: {
+        //         minPadding: 0.2,
+        //         maxPadding: 0.2,
+        //         title: {
+        //             text: 'Value',
+        //             margin: 80
+        //                 }
+        //              },
+        //     series: [{
+        //         color : '#c23d23',
+        //         lineColor: '#303030',
+        //         name: 'Z Coords',
+        //         data: []
+        //     }]
+        // });
 
         });
     </script>
