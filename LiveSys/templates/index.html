@@ -187,7 +187,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-left">
+          <div class="container-fluid" id="data-X">
 
           </div>
       </div>
@@ -199,7 +199,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-right">
+          <div class="container-fluid" id="data-Y">
 
           </div>
       </div>
@@ -208,19 +208,19 @@
 <br>
 <br>
 
-  <!-- <div class="container-fluid">
+  <div class="container-fluid">
       Example row of columns
       <div class="row">
           <div class="container-fluid" id="data-Z">
 
           </div>
       </div>
-  </div> -->
+  </div>
 
   <script>
     var chartLeft;
     var chartRight;
-    // var chartZ;
+    var chartZ;
 
     function requestData()
     {
@@ -230,16 +230,16 @@
         var tm = requests.done(function (result)
         {
             // X Coords
-            var seriesLeft = chartLeft.series[0],
-                shiftLeft = seriesLeft.data.length > 500;
+            var seriesX = chartX.series[0],
+                shiftX = seriesX.data.length > 500;
 
             // Y Coords
-            var seriesRight = chartRight.series[0],
-                shiftRight = seriesRight.data.length > 500;
+            var seriesY = chartY.series[0],
+                shiftY = seriesY.data.length > 500;
 
             // // Y Coords
-            // var seriesZ = chartZ.series[0],
-            //     shiftZ = seriesZ.data.length > 500;
+            var seriesZ = chartZ.series[0],
+                shiftZ = seriesZ.data.length > 500;
 
             // Add the Point
             // Time X
@@ -256,14 +256,14 @@
 
             // Add the Point
             // Time Z
-            // var data3 = [];
-            // data3.push(result[0]);
-            // data3.push(result[3]);
+            var data3 = [];
+            data3.push(result[0]);
+            data3.push(result[3]);
 
 
-            chartLeft.series[0].addPoint(data1, true, shiftLeft);
-            chartRight.series[0].addPoint(data2, true, shiftRight);
-            // chartZ.series[0].addPoint(data3, true, shiftZ);
+            chartX.series[0].addPoint(data1, true, shiftX);
+            chartY.series[0].addPoint(data2, true, shiftY);
+            chartZ.series[0].addPoint(data3, true, shiftZ);
             
 
             // call it again after one second
@@ -279,7 +279,7 @@
             chart:
                 {
                 renderTo: 'data-X',
-                defaultSeriesType: 'line',
+                defaultSeriesType: 'area',
                 events: {
                     load: requestData
                         }
@@ -357,39 +357,39 @@
                 }]
             });
             // --------------Chart 2 Ends ----------------------------
-        // chartZ = new Highcharts.Chart({
-        //     chart:
-        //         {
-        //         renderTo: 'data-Z',
-        //         defaultSeriesType: 'area',
-        //         events: {
-        //             load: requestData
-        //                 }
-        //         },
-        //     title:
-        //         {
-        //         text: 'Z Coords'
-        //         },
-        //     xAxis: {
-        //         type: 'datetime',
-        //         tickPixelInterval: 150,
-        //         maxZoom: 20 * 1000
-        //             },
-        //     yAxis: {
-        //         minPadding: 0.2,
-        //         maxPadding: 0.2,
-        //         title: {
-        //             text: 'Value',
-        //             margin: 80
-        //                 }
-        //              },
-        //     series: [{
-        //         color : '#c23d23',
-        //         lineColor: '#303030',
-        //         name: 'Z Coords',
-        //         data: []
-        //     }]
-        // });
+        chartZ = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z Coords',
+                data: []
+            }]
+        });
 
         });
     </script>
