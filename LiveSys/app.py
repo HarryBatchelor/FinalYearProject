@@ -22,7 +22,7 @@ def data():
     while True:
         x, y, z = accel.read()
         x2, y2, z2 = accel2.read()
-        data = [time()*1000, x, y, z, x2,y2,z2]
+        data = [time()*1000, x, y, z]
         
         response = make_response(json.dumps(data))
 
