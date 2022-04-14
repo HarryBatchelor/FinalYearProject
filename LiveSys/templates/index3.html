@@ -96,8 +96,8 @@
         var tm = requests.done(function (result)
         {
             // X Coords
-            var series = chart.series[0],
-                shift = series.data.length > 20;
+            var seriesX = chartX.series[0],
+                shiftX = seriesX.data.length > 500;
 
             // // Y Coords
             // var seriesY = chartY.series[0],
@@ -106,33 +106,30 @@
             // // Y Coords
             // var seriesZ = chartZ.series[0],
             //     shiftZ = seriesZ.data.length > 500;
-            var values = eval(point);
-                chart.series[0].addPoint([values[0], vaalues[1]], true, shift);
-                chart.series[1].addPoint([values[0], vaalues[2]], true, shift);
-                chart.series[2].addPoint([values[0], vaalues[3]], true, shift);
+
             // Add the Point
             // Time X
-            // var data1 = [];
-            // data1.push(result[0]);
-            // data1.push(result[1]);
+            var data1 = [];
+            data1.push(result[0]);
+            data1.push(result[1]);
 
 
             // Add the Point
             // Time Y
-            // var data2 = [];
-            // data2.push(result[0]);
-            // data2.push(result[2]);
+            var data2 = [];
+            data2.push(result[0]);
+            data2.push(result[2]);
 
             // Add the Point
             // Time Z
-            // var data3 = [];
-            // data3.push(result[0]);
-            // data3.push(result[3]);
+            var data3 = [];
+            data3.push(result[0]);
+            data3.push(result[3]);
 
 
-            // chartX.series[0].addPoint(data1, data2, data3, true, shiftX);
-            // chartY.series[0].addPoint(data2, true, shiftY);
-            // chartZ.series[0].addPoint(data3, true, shiftZ);
+            chartX.series[0].addPoint(data1, true, shiftX);
+            chartY.series[0].addPoint(data2, true, shiftY);
+            chartZ.series[0].addPoint(data3, true, shiftZ);
             
 
             // call it again after one second
@@ -174,7 +171,7 @@
                 color : '#c23d23',
                 lineColor: '#303030',
                 name: 'X Coords',
-                data: []
+                data: [$value['x'], $value['y'], $value['z']]
             }]
         });
          // --------------Chart 1 Ends - -----------------
