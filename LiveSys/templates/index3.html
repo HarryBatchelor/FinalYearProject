@@ -160,7 +160,7 @@
 <body>
 
   <div class="jumbotron">
-      <h1 class="text-center text-white">Welcome to Sensor Visualization </h1>
+      <h1 class="text-center text-white">Welcome to Sensor Visualization 3 </h1>
   </div>
 
   
@@ -259,7 +259,7 @@
         chartLeft = new Highcharts.Chart({
             chart:
                 {
-                renderTo: 'data-X',
+                renderTo: 'data-left',
                 defaultSeriesType: 'line',
                 events: {
                     load: requestData
@@ -301,7 +301,7 @@
          chartRight = new Highcharts.Chart({
                 chart:
                     {
-                        renderTo: 'data-Y',
+                        renderTo: 'data-right',
                         defaultSeriesType: 'area',
                         events: {
                             load: requestData
