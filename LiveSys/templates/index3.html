@@ -127,9 +127,9 @@
             data3.push(result[3]);
 
 
-            chartX.series[0].addPoint(data1, true, shiftX);
-            chartY.series[0].addPoint(data2, true, shiftY);
-            chartZ.series[0].addPoint(data3, true, shiftZ);
+            chartX.series[0].addPoint(data1, data2, data3, true, shiftX);
+#             chartY.series[0].addPoint(data2, true, shiftY);
+#             chartZ.series[0].addPoint(data3, true, shiftZ);
             
 
             // call it again after one second
@@ -180,7 +180,7 @@
                 chart:
                     {
                         renderTo: 'data-Y',
-                        defaultSeriesType: 'area',
+                        defaultSeriesType: 'line',
                         events: {
                             load: requestData
                         }
@@ -213,7 +213,7 @@
             chart:
                 {
                 renderTo: 'data-Z',
-                defaultSeriesType: 'area',
+                defaultSeriesType: 'line',
                 events: {
                     load: requestData
                         }
