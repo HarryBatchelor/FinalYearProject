@@ -15,7 +15,7 @@ pi_camera = VideoCamera(flip=False)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
-    return render_template('index.html')
+    return render_template('index3.html')
 
 @app.route('/dataLeft', methods=["GET", "POST"])
 def dataLeft():
@@ -24,19 +24,19 @@ def dataLeft():
         
         dataLeft= [time()*1000, x, y, z]
         
-        response = make_response(json.dumps(data))
+        response = make_response(json.dumps(dataLeft))
 
         response.content_type = 'application/json'
 
         return response
-@app.route('/dataRight', method=["GET", "POST"])
+@app.route('/dataRight', methods=["GET", "POST"])
 def dataRight():
     while True:
         x2, y2, z2 = accel2.read()
         
         dataRight= [time()*1000, x2, y2, z2]
         
-        response = make_response(json.dumps(data2))
+        response = make_response(json.dumps(dataRight))
         
         response.content_type = 'application/json'
         
