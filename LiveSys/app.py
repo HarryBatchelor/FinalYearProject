@@ -17,18 +17,30 @@ pi_camera = VideoCamera(flip=False)
 def main():
     return render_template('index.html')
 
-@app.route('/data', methods=["GET", "POST"])
-def data():
+@app.route('/dataLeft', methods=["GET", "POST"])
+def dataLeft():
     while True:
         x, y, z = accel.read()
-        x2, y2, z2 = accel2.read()
-        data = [time()*1000, x, y, z, x2, y2, z2]
+        
+        dataLeft= [time()*1000, x, y, z]
         
         response = make_response(json.dumps(data))
 
         response.content_type = 'application/json'
 
         return response
+@app.route('/dataRight', method=["GET", "POST"])
+def dataRight():
+    while True;
+    x2, y2, z2 = accel2.read()
+    
+    dataRight= [time()*1000, x2, y2, z2]
+    
+    response = make_response(json.dumps(data2))
+    
+    response2.content_type = 'application/json'
+    
+    return response2
 @app.route('/camera')
 def LiveStream():
     return render_template('LiveStream.html')

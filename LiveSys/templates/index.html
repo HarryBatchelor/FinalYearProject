@@ -162,11 +162,20 @@
   <div class="jumbotron">
       <h1 class="text-center text-white">Welcome to Sensor Visualization </h1>
   </div>
-  <!-- CAMERA -->
   <div class = "main" id="newpost">
     <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
   </div>
-  
+  <!-- <div class="navbar"> -->
+      <!-- <div class="ignoreCall">
+          <a id=decline class="but_def">
+              <button id="button">
+                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
+              </button>
+          </a>
+          <div class="Placeholder">
+              <button id="Placeholder">Placeholder</button>
+          </div>
+      </div> -->
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -179,9 +188,10 @@
             }
         };
         </script>
+  <!-- </div> -->
 
 
-<!-- CAMERA END, GRAPHS START -->
+
   
 
   <div class="container-fluid">
@@ -209,7 +219,7 @@
 <br>
 
   <div class="container-fluid">
-      Example row of columns
+      <!-- Example row of columns -->
       <div class="row">
           <div class="container-fluid" id="data-Z">
 
@@ -218,8 +228,8 @@
   </div>
 
   <script>
-    var chartLeft;
-    var chartRight;
+    var chartX;
+    var chartY;
     var chartZ;
 
     function requestData()
@@ -237,7 +247,7 @@
             var seriesY = chartY.series[0],
                 shiftY = seriesY.data.length > 500;
 
-            // // Y Coords
+            // Y Coords
             var seriesZ = chartZ.series[0],
                 shiftZ = seriesZ.data.length > 500;
 
@@ -264,7 +274,14 @@
             chartX.series[0].addPoint(data1, true, shiftX);
             chartY.series[0].addPoint(data2, true, shiftY);
             chartZ.series[0].addPoint(data3, true, shiftZ);
-            
+            $(".sensor1").text("");
+            $(".sensor1").text("X Coords : ");
+
+            $(".sensor2").text("");
+            $(".sensor2").text("Y Coords : ");
+
+            $(".sensor3").text("");
+            $(".sensor3").text("Z Coords : ");
 
             // call it again after one second
             setTimeout(requestData, 200);
@@ -275,7 +292,7 @@
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
-        chartLeft = new Highcharts.Chart({
+        chartX = new Highcharts.Chart({
             chart:
                 {
                 renderTo: 'data-X',
@@ -301,13 +318,6 @@
                     margin: 80
                         }
                      },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0,
-                 showInLegend: false
-            },
             series: [{
                 color : '#c23d23',
                 lineColor: '#303030',
@@ -317,7 +327,7 @@
         });
          // --------------Chart 1 Ends - -----------------
 
-         chartRight = new Highcharts.Chart({
+         chartY = new Highcharts.Chart({
                 chart:
                     {
                         renderTo: 'data-Y',
@@ -343,13 +353,6 @@
                         margin: 80
                     }
                 },
-                legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0,
-                 showInLegend: false
-            },
                 series: [{
                     lineColor: '#1d82b8',
                     name: 'Y Coords',
