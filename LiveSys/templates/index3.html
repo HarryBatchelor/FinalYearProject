@@ -168,7 +168,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-left">
+          <div class="container-fluid" id="data-X">
 
           </div>
       </div>
@@ -180,7 +180,7 @@
   <div class="container-fluid">
       <!-- Example row of columns -->
       <div class="row">
-          <div class="container-fluid" id="data-right">
+          <div class="container-fluid" id="data-Y2">
 
           </div>
       </div>
@@ -199,24 +199,24 @@
   </div> -->
 
   <script>
-    var chartLeft;
-    var chartRight;
+    var chartX;
+    var chartY2;
     // var chartZ;
 
-    function requestData()
+    function requestDataLeft()
     {
         // Ajax call to get the Data from Flask
-        var requests = $.get('/data');
+        var requests = $.get('/dataLeft');
 
         var tm = requests.done(function (result)
         {
             // X Coords
-            var seriesLeft = chartLeft.series[0],
-                shiftLeft = seriesLeft.data.length > 500;
+            var seriesX = chartX.series[0],
+                shiftX = seriesX.dataLeft.length > 500;
 
             // Y Coords
-            var seriesRight = chartRight.series[0],
-                shiftRight = seriesRight.data.length > 500;
+            // var seriesY2 = chartY2.series[0],
+            //     shiftY2 = seriesY2.data.length > 500;
 
             // // Y Coords
             // var seriesZ = chartZ.series[0],
@@ -231,9 +231,9 @@
 
             // Add the Point
             // Time Y
-            var data2 = [];
-            data2.push(result[0]);
-            data2.push(result[2]);
+            // var data2 = [];
+            // data2.push(result[0]);
+            // data2.push(result[2]);
 
             // Add the Point
             // Time Z
@@ -242,8 +242,8 @@
             // data3.push(result[3]);
 
 
-            chartLeft.series[0].addPoint(data1, true, shiftLeft);
-            chartRight.series[0].addPoint(data2, true, shiftRight);
+            chartX.series[0].addPoint(data1, true, shiftX);
+            // chartRight.series[0].addPoint(data2, true, shiftRight);
             // chartZ.series[0].addPoint(data3, true, shiftZ);
             
 
@@ -252,17 +252,31 @@
 
         });
     }
+    function requestDataRight(){
+        var requests = $.get('/dataLeft');
+
+        var tm = requests.done(function (result)
+        {
+            var seriesY2 = chartY2.series[0],
+                shiftY2 = seriesY2.data.length > 500;
+            
+            var data2 = [];
+            data2.push(result[0]);
+            data2.push(result[1]);
+
+            chartY2.series[0].addPoint(data2, true, shiftY2);
+    }
 
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
-        chartLeft = new Highcharts.Chart({
+        chartX = new Highcharts.Chart({
             chart:
                 {
                 renderTo: 'data-X',
-                defaultSeriesType: 'line',
+                defaultSeriesType: 'area',
                 events: {
-                    load: requestData
+                    load: requestDataLeft
                         }
                 },
             title:
@@ -282,29 +296,23 @@
                     margin: 80
                         }
                      },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0,
-                 showInLegend: false
-            },
+            
             series: [{
                 color : '#c23d23',
                 lineColor: '#303030',
                 name: 'X Coords',
-                data: [x,y,z]
+                data: []
             }]
         });
          // --------------Chart 1 Ends - -----------------
 
-         chartRight = new Highcharts.Chart({
+         chartY2 = new Highcharts.Chart({
                 chart:
                     {
-                        renderTo: 'data-Y',
+                        renderTo: 'data-Y2',
                         defaultSeriesType: 'area',
                         events: {
-                            load: requestData
+                            load: requestDataRight
                         }
                     },
                 title:
@@ -324,17 +332,11 @@
                         margin: 80
                     }
                 },
-                legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0,
-                 showInLegend: false
-            },
+                
                 series: [{
                     lineColor: '#1d82b8',
                     name: 'Y Coords',
-                    data: [x2,y2,z2]
+                    data: []
                 }]
             });
             // --------------Chart 2 Ends ----------------------------

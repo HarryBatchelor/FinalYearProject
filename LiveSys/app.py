@@ -31,16 +31,16 @@ def dataLeft():
         return response
 @app.route('/dataRight', method=["GET", "POST"])
 def dataRight():
-    while True;
-    x2, y2, z2 = accel2.read()
-    
-    dataRight= [time()*1000, x2, y2, z2]
-    
-    response = make_response(json.dumps(data2))
-    
-    response2.content_type = 'application/json'
-    
-    return response2
+    while True:
+        x2, y2, z2 = accel2.read()
+        
+        dataRight= [time()*1000, x2, y2, z2]
+        
+        response = make_response(json.dumps(data2))
+        
+        response.content_type = 'application/json'
+        
+        return response
 @app.route('/camera')
 def LiveStream():
     return render_template('LiveStream.html')
