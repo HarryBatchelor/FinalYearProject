@@ -25,7 +25,7 @@ def main():
 def getData():
 	conn=sqlite3.connect('sensorsdata.db')
 	curs=conn.cursor()
-	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
+	for row in curs.execute("SELECT * FROM ALL_data ORDER BY timestamp DESC LIMIT 1"):
 	
 		time = str(row[0])
 		x = row[1]
@@ -78,7 +78,7 @@ def CSVLEFT():
     return redirect('/', code=302)
 					
 if __name__ == "__main__":
-   app.run(host='192.168.0.75', port=5000, debug=False)
+   app.run(host='0.0.0.0', port=5000, debug=False)
    
 
 

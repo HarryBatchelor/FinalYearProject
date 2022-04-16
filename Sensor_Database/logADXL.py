@@ -28,7 +28,7 @@ def logData (x, y, z, x2, y2, z2):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO acc_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
+	curs.execute("INSERT INTO ALL_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
 	conn.commit()
 	conn.close()
 
