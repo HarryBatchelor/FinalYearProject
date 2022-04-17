@@ -2,6 +2,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import uuid
+from os import path
 def PlotLeft():
     # Connect to DB
     dbname= 'sensorsdata.db'
@@ -33,22 +34,30 @@ def PlotLeft():
             plt.plot(xs)
             plt.title("X Coords")
             plt.xticks([])
+            plt.ylim([-600,600])
                 # plot 2
             plt.subplot(3,1,2)
             plt.plot(ys)
             plt.title("Y Coords")
             plt.xticks([])
+            plt.ylim([-600,600])
                 # plot 3
             plt.subplot(3,1,3)
             plt.plot(zs)
             plt.title("Z Coords")
             plt.suptitle("Left Sensor")
             plt.xticks([])
+            plt.ylim([-600,600])
             
             # give file unique name
-            uniquefilename = str(uuid.uuid4()) + '.pdf'
-        plt.savefig('pdf/LEFT/'+ uniquefilename)
+            u = 1
+            flname = "PDF/LEFT/" + str(u) + ".pdf"
+            while path.exists(flname):
+                flname = "PDF/LEFT/" + str(u) + ".pdf"
+                u += 1
+        plt.savefig(flname)
         plt.close()
+    print("Finished Left")
 def PlotRight():
      # Connect to DB
     dbname= 'sensorsdata.db'
@@ -80,21 +89,29 @@ def PlotRight():
             plt.plot(x2s)
             plt.title("X Coords")
             plt.xticks([])
+            plt.ylim([-600,600])
                 # plot 2
             plt.subplot(3,1,2)
             plt.plot(y2s)
             plt.title("Y Coords")
             plt.xticks([])
+            plt.ylim([-600,600])
                 # plot 3
             plt.subplot(3,1,3)
             plt.plot(z2s)
             plt.title("Z Coords")
             plt.suptitle("Right Sensor")
             plt.xticks([])
+            plt.ylim([-600,600])
             
             # give file unique name
-            uniquefilename = str(uuid.uuid4()) + '.pdf'
-        plt.savefig('pdf/RIGHT/'+ uniquefilename)
+            u = 1
+            flname = "PDF/RIGHT/" + str(u) + ".pdf"
+            while path.exists(flname):
+                flname = "PDF/RIGHT/" + str(u) + ".pdf"
+                u += 1
+        plt.savefig(flname)
         plt.close()
+    print("Finished Right")
 PlotLeft()
 PlotRight()
