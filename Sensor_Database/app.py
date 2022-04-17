@@ -3,7 +3,7 @@ from camera import VideoCamera
 from time import sleep 
 import sqlite3
 import Adafruit_ADXL345
-from SaveToCSV import PoleHitRIGHT, PoleHitLEFT
+from SAVE_TimeOfHit import PoleHitRIGHT, PoleHitLEFT
 
 
 # pi_camera = VideoCamera(flip = False) flip pi camera if upside down
@@ -65,14 +65,14 @@ def gen(camera):
 def video_feed():
 	return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-@app.route('/SaveToCSVRIGHT/')
-def CSVOutput():
+@app.route('/SaveTimeRIGHT/')
+def TimeOutput():
 	PoleHitRIGHT()
 	print('I got clicked RIGHT!')
 	return redirect('/', code=302)
 
-@app.route('/SaveToCSVLEFT/')
-def CSVLEFT():
+@app.route('/SaveTimeLEFT/')
+def TimeLEFT():
     PoleHitLEFT()
     print('I got clicked LEFT!')
     return redirect('/', code=302)
