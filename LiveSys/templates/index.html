@@ -159,9 +159,7 @@
 
 <body>
 
-  <div class="jumbotron">
-      <h1 class="text-center text-white">Welcome to Sensor Visualization </h1>
-  </div>
+   
   <div class = "main" id="newpost">
     <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
   </div>
@@ -271,7 +269,7 @@
 
             // Add the Point
             // Time Y
-            var data2 = [];
+            var data5 = [];
             data5.push(result[0]);
             data5.push(result[5]);
 
@@ -402,7 +400,7 @@
             }]
         });
          // --------------Chart 3 Ends ----------------------------
-         chartZ = new Highcharts.Chart({
+         chartX2 = new Highcharts.Chart({
             chart:
                 {
                 renderTo: 'data-X2',
