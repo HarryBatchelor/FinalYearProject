@@ -198,7 +198,6 @@
       <!-- Example row of columns -->
       <div class="row">
           <div class="col" id="data-X"></div>
-      <!-- Example row of columns -->
           <div class="col" id="data-Y"></div>
           <div class="col" id="data-Z"></div>
       </div>
@@ -213,7 +212,10 @@
     var chartX;
     var chartY;
     var chartZ;
-
+    var chartX2;
+    var chartY2;
+    var chartZ2;
+//Get data and add to series
     function requestData()
     {
         // Ajax call to get the Data from Flask
@@ -232,6 +234,15 @@
             // Y Coords
             var seriesZ = chartZ.series[0],
                 shiftZ = seriesZ.data.length > 500;
+            // X2 Coords
+                var seriesX2 = chartX2.series[0],
+                shiftX2 = seriesX2.data.length > 500;
+            // Y2 Coords
+            var seriesY2 = chartY2.series[0],
+                shiftY2 = seriesY2.data.length > 500;
+            // Z2 Coords
+            var seriesZ2 = chartZ2.series[0],
+                shiftZ2 = seriesZ2.data.length > 500;
 
             // Add the Point
             // Time X
@@ -252,10 +263,32 @@
             data3.push(result[0]);
             data3.push(result[3]);
 
+            // Add the Point
+            // Time X2
+            var data4 = [];
+            data4.push(result[0]);
+            data4.push(result[4]);
+
+            // Add the Point
+            // Time Y
+            var data2 = [];
+            data5.push(result[0]);
+            data5.push(result[5]);
+
+            // Add the Point
+            // Time Z
+            var data6 = [];
+            data6.push(result[0]);
+            data6.push(result[6]);
+
 
             chartX.series[0].addPoint(data1, true, shiftX);
             chartY.series[0].addPoint(data2, true, shiftY);
             chartZ.series[0].addPoint(data3, true, shiftZ);
+            
+            chartX2.series[0].addPoint(data4, true, shiftX2);
+            chartY2.series[0].addPoint(data5, true, shiftY2);
+            chartZ2.series[0].addPoint(data6, true, shiftZ2);
             $(".sensor1").text("");
             $(".sensor1").text("X Coords : ");
 
@@ -265,12 +298,21 @@
             $(".sensor3").text("");
             $(".sensor3").text("Z Coords : ");
 
+            $(".sensor4").text("");
+            $(".sensor4").text("X2 Coords : ");
+
+            $(".sensor5").text("");
+            $(".sensor5").text("Y2 Coords : ");
+
+            $(".sensor6").text("");
+            $(".sensor6").text("Z2 Coords : ");
+
             // call it again after one second
             setTimeout(requestData, 200);
 
         });
     }
-
+// Graphs 
     $(document).ready(function()
     {
         // --------------Chart 1 ----------------------------
@@ -372,6 +414,108 @@
                 color : '#c23d23',
                 lineColor: '#303030',
                 name: 'Z Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 3 Ends ----------------------------
+         chartZ = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-X2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'X2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'X2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 4 Ends ----------------------------
+         chartY2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Y2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Y2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Y2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 5 Ends ----------------------------
+         chartZ2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z2 Coords',
                 data: []
             }]
         });
