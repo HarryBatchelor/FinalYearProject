@@ -18,7 +18,7 @@ def main():
     return render_template('index.html')
 
 @app.route('/data', methods=["GET", "POST"])
-def dataLeft():
+def data():
     while True:
         x, y, z = accel.read()
         x2, y2, z2 = accel2.read()
@@ -30,7 +30,7 @@ def dataLeft():
         response.content_type = 'application/json'
 
         return response
-        
+
 @app.route('/camera')
 def LiveStream():
     return render_template('LiveStream.html')
