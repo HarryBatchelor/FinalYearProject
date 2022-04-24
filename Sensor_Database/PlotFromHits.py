@@ -21,42 +21,50 @@ def PlotLeft():
         cX = conn.cursor()
         cY = conn.cursor()
         cZ = conn.cursor()
-        x = cX.execute('SELECT x from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 100', (i, ))
-        y = cY.execute('SELECT y from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 100', (i, ))
-        z = cZ.execute('SELECT z from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 100', (i, ))
+        x = cX.execute('SELECT x from TEST WHERE ROWID > (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        y = cY.execute('SELECT y from TEST WHERE ROWID > (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        z = cZ.execute('SELECT z from TEST WHERE ROWID > (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
         xs = cX.fetchall()
         ys = cY.fetchall()
         zs = cZ.fetchall()
     # Plot data
         for i in leftHits:
                 # plot 1
-            plt.subplot(3,1,1)
-            plt.plot(xs)
-            plt.title("X Coords")
-            plt.xticks([])
-            plt.ylim([-600,600])
-                # plot 2
-            plt.subplot(3,1,2)
-            plt.plot(ys)
-            plt.title("Y Coords")
-            plt.xticks([])
-            plt.ylim([-600,600])
-                # plot 3
-            plt.subplot(3,1,3)
-            plt.plot(zs)
-            plt.title("Z Coords")
-            plt.suptitle("Left Sensor")
-            plt.xticks([])
-            plt.ylim([-600,600])
-            
+            # plt.subplot(3,1,1)
+            # plt.plot(xs)
+            # plt.title("X Coords")
+            # plt.xticks([])
+            # plt.ylim([-500,500])
+            #     # plot 2
+            # plt.subplot(3,1,2)
+            # plt.plot(ys)
+            # plt.title("Y Coords")
+            # plt.xticks([])
+            # plt.ylim([-500,500])
+            #     # plot 3
+            # plt.subplot(3,1,3)
+            # plt.plot(zs)
+            # plt.title("Z Coords")
+            # plt.suptitle("Left Sensor")
+            # plt.xticks([])
+            # plt.ylim([-500,500])
+            plt.plot(xs, label = "X Coords")
+            plt.plot(ys, label = "Y Coords")
+            plt.plot(zs, label = "Z Coords")
+            # plt.legend()
+            plt.title("Right Pole")
+            plt.xlabel("Time")
+            plt.ylabel("Acceleration")
             # give file unique name
             u = 1
             flname = "PDF/LEFT/" + str(u) + ".pdf"
             while path.exists(flname):
                 flname = "PDF/LEFT/" + str(u) + ".pdf"
                 u += 1
-        plt.savefig(flname)
-        plt.close()
+        # plt.savefig(flname)
+    plt.show()
+    plt.close()
+    
     print("Finished Left")
 def PlotRight():
      # Connect to DB
@@ -89,20 +97,20 @@ def PlotRight():
             plt.plot(x2s)
             plt.title("X Coords")
             plt.xticks([])
-            plt.ylim([-600,600])
+            plt.ylim([-500,500])
                 # plot 2
             plt.subplot(3,1,2)
             plt.plot(y2s)
             plt.title("Y Coords")
             plt.xticks([])
-            plt.ylim([-600,600])
+            plt.ylim([-500,500])
                 # plot 3
             plt.subplot(3,1,3)
             plt.plot(z2s)
             plt.title("Z Coords")
             plt.suptitle("Right Sensor")
             plt.xticks([])
-            plt.ylim([-600,600])
+            plt.ylim([-500,500])
             
             # give file unique name
             u = 1
@@ -114,4 +122,4 @@ def PlotRight():
         plt.close()
     print("Finished Right")
 PlotLeft()
-PlotRight()
+# PlotRight()
