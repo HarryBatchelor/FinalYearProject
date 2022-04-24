@@ -7,14 +7,14 @@ def PoleHitLEFT():
     conn=sqlite3.connect(dbname)
     curs = conn.cursor()
 
-    curs.execute("INSERT INTO TimeOfHit values ((SELECT timestamp FROM ACC_data ORDER BY timestamp DESC LIMIT 1), ('LEFT'), (SELECT ROWID FROM ACC_data ORDER BY timestamp DESC LIMIT 1))")
+    curs.execute("INSERT INTO Hits values ((SELECT timestamp FROM TEST ORDER BY timestamp DESC LIMIT 1), ('LEFT'), (SELECT ROWID FROM TEST ORDER BY timestamp DESC LIMIT 1))")
     conn.commit()
     conn.close()
 def PoleHitRIGHT():
     conn=sqlite3.connect(dbname)
     curs = conn.cursor()
 
-    curs.execute("INSERT INTO TimeOfHit values ((SELECT timestamp FROM ACC_data ORDER BY timestamp DESC LIMIT 1), ('RIGHT'), (SELECT ROWID FROM ACC_data ORDER BY timestamp DESC LIMIT 1))")
+    curs.execute("INSERT INTO Hits values ((SELECT timestamp FROM TEST ORDER BY timestamp DESC LIMIT 1), ('RIGHT'), (SELECT ROWID FROM TEST ORDER BY timestamp DESC LIMIT 1))")
     conn.commit()
     conn.close()
 PoleHitRIGHT()

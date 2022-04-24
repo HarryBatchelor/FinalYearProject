@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 dbname = 'sensorsdata.db'
 conn = sqlite3.connect(dbname)
-sql = """SELECT * from ACC_data ORDER BY timestamp"""
+sql = """SELECT * from TEST ORDER BY timestamp"""
 
 
 data = pandas.read_sql(sql, conn)

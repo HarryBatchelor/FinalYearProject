@@ -26,7 +26,7 @@ def main():
 def getData():
 	conn=sqlite3.connect('sensorsdata.db')
 	curs=conn.cursor()
-	for row in curs.execute("SELECT * FROM ACC_data ORDER BY timestamp DESC LIMIT 1"):
+	for row in curs.execute("SELECT * FROM TEST ORDER BY timestamp DESC LIMIT 1"):
 	
 		time = str(row[0])
 		x = row[1]
