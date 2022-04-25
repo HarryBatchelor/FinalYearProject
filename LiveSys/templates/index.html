@@ -86,9 +86,45 @@
              background-repeat:no-repeat;
              border: none;
              cursor:pointer;
-             /* overflow: hidden; */
-             outline:none;
-        } 
+             overflow: hidden;
+             outline:none;}
+        .HIT{
+            border-radius: 15px;
+            background-color: #4CAF50;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 15px 25px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .HIT span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .HIT span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .HIT:hover span {
+            padding-right: 25px;
+        }
+
+        .HIT:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
         //CSS
          .camera-bg {
            position: fixed;
@@ -190,7 +226,7 @@
   <div class="container">
     <div class="center">
   <button class = "Button HIT" style="vertical-align: middle">
-    <a href="/Off_course/">
+    <a href="/Off_course">
       <span>Paddler Off Course</span>
   </a></button>
   <button class = "Button HIT" style="vertical-align: middle">

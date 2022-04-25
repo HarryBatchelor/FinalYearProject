@@ -81,14 +81,50 @@
              width: 35%
         }
     
-         button {
+        button {
              background-color: Transparent;
              background-repeat:no-repeat;
              border: none;
              cursor:pointer;
-             /* overflow: hidden; */
-             outline:none;
-        } 
+             overflow: hidden;
+             outline:none;}
+        .HIT{
+            border-radius: 15px;
+            background-color: #4CAF50;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 15px 25px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .HIT span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .HIT span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .HIT:hover span {
+            padding-right: 25px;
+        }
+
+        .HIT:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
         //CSS
          .camera-bg {
            position: fixed;
@@ -163,17 +199,7 @@
   <div class = "main" id="newpost">
     <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
   </div>
-  <!-- <div class="navbar"> -->
-      <!-- <div class="ignoreCall">
-          <a id=decline class="but_def">
-              <button id="button">
-                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
-              </button>
-          </a>
-          <div class="Placeholder">
-              <button id="Placeholder">Placeholder</button>
-          </div>
-      </div> -->
+  
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -190,7 +216,7 @@
   <div class="container">
     <div class="center">
   <button class = "Button HIT" style="vertical-align: middle">
-    <a href="/Off_course/">
+    <a href="/Off_course">
       <span>Paddler Off Course</span>
   </a></button>
   <button class = "Button HIT" style="vertical-align: middle">
@@ -291,9 +317,9 @@
             data6.push(result[6]);
 
 
-            chartX.series[0].addPoint(data1, true, shiftX);
-            chartY.series[0].addPoint(data2, true, shiftY);
-            chartZ.series[0].addPoint(data3, true, shiftZ);
+            chartX.series[0].addPoint(data, true, shiftX);
+            chartY.series[0].addPoint(data, true, shiftY);
+            chartZ.series[0].addPoint(data, true, shiftZ);
             
             chartX2.series[0].addPoint(data, true, shiftX2);
             chartY2.series[0].addPoint(data, true, shiftY2);
