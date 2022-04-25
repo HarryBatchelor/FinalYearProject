@@ -28,22 +28,9 @@ def logData (x, y, z, x2, y2, z2):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 
-	curs.execute("INSERT INTO ACC_data values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
+	curs.execute("INSERT INTO TEST values(datetime('now'), (?), (?), (?), (?), (?), (?))", (x, y, z, x2, y2, z2))
 	conn.commit()
 	conn.close()
-
-
-
-
-#log data from 2nd accelerometer
-
-# def logData2 (x2, y2, z2):
-# 	conn=sqlite3.connect(dbname)
-# 	curs=conn.cursor()
-# 
-# 	curs.execute("INSERT INTO ACC_data values(datetime('now'), (X2), (Y2), (Z2))", (x2, y2, z2))
-# 	conn.commit()
-# 	conn.close()
 
 
 # main function
