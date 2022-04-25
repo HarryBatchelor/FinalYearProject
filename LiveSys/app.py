@@ -45,7 +45,9 @@ def gen(camera):
 def video_feed():
     return Response(gen(pi_camera),
                         mimetype = 'multipart/x-mixed-replace; boundary=frame')
-
+@app.route('/Off_course')
+def off_course():
+    return render_template('index2.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)

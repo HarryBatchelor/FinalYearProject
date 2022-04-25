@@ -1,90 +1,520 @@
 <!DOCTYPE html>
 <html  lang="en" dir="ltr">
+    <style>
+
+        .jumbotron{
+            widows: 150px;
+            height: 220px;
+            justify-content: center;
+        }
+    
+        .row{
+            justify-content: center;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    
+         .navbar {
+           /* overflow: hidden; */
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+           margin: auto;
+           background-color: black;
+           opacity:0.6;
+        }
+    
+         .navbar a {
+           float: left;
+           display: block;
+           color: #f2f2f2;
+           text-align: center;
+           padding: 14px 16px;
+           text-decoration: none;
+           font-size: 17px;
+        }
+    
+         .navbar a:hover {
+    
+        }
+    
+         a:link{
+           color: black;
+        }
+    
+         .navbar a.active {
+           background-color: #4CAF50;
+           color: white;
+        }
+    
+         .main {
+           padding: 16px;
+           margin-bottom: 30px;
+        }
+    
+    
+         .camera-movement{
+           float: none;
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+        }
+    
+         .lights-button{
+             float: right;
+        }
+    
+         i.fa {
+           display: inline-block;
+           border-radius: 60px;
+           box-shadow: 0px 0px 2px #888;
+           padding: 0.5em 0.6em;
+        }
+    
+         img {
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+             width: 35%
+        }
+    
+         button {
+             background-color: Transparent;
+             background-repeat:no-repeat;
+             border: none;
+             cursor:pointer;
+             /* overflow: hidden; */
+             outline:none;
+        } 
+        //CSS
+         .camera-bg {
+           position: fixed;
+           top: 0;
+           left: 0;
+    
+           /* Preserve aspet ratio */
+           min-width: 100%;
+           min-height: 100%;
+    
+            /* Full height */
+           height: 100%;
+    
+    
+           /* Center and scale the image nicely */
+           background-position: center; 
+           background-repeat: no-repeat;
+           background-size: cover;
+    
+        } 
+        .top-right-logo {
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            font-size: 38px;
+            color: white;
+            opacity: 0.5;
+        }
+    
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            /* overflow: hidden; */
+            background-color: grey;
+        }
+      </style>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Flask App </title>
-    
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
 
-    <div id="container"></div>
+    <!-- Bootstraps Java Scipts Links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+    <!-- JQuery links  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!--High CHART LIVE  -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <!--Gauge  -->
+    <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+
+    <!-- camera css -->
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'/>  
 </head>
-<style>
-#container {
-    min-width: 310px;
-    max-width: 800px;
-    height: 400px;
-    margin: 0 auto
-}
-</style>
 
-<script>
+<body>
 
-function getTemp() {
-    return Math.random() * 50
-}
+   
+  <div class = "main" id="newpost">
+    <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
+  </div>
+  <!-- <div class="navbar"> -->
+      <!-- <div class="ignoreCall">
+          <a id=decline class="but_def">
+              <button id="button">
+                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
+              </button>
+          </a>
+          <div class="Placeholder">
+              <button id="Placeholder">Placeholder</button>
+          </div>
+      </div> -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-function getTemp2() {
-    return Math.random() * 100
-}
+        <script type="text/javascript">
+        
+        var button = document.getElementById('button');
+        button.onclick = function(){
+            var div = document.getElementById('newpost');
+            if(div.style.display !== 'none'){
+                div.style.display = 'block';
+            }
+        };
+        </script>
+  <!-- </div> -->
+  <div class="container">
+    <div class="center">
+  <button class = "Button HIT" style="vertical-align: middle">
+    <a href="/Off_course/">
+      <span>Paddler Off Course</span>
+  </a></button>
+  <button class = "Button HIT" style="vertical-align: middle">
+    <a href="/">
+      <span>Paddler On Course</span>
+  </a></button>
+  </div>
+  </div>
 
-function getData() {
-    var data = [],
-        time = (new Date()).getTime(),
-        i;
 
-    for (i = -200; i <= 0; i += 1) {
-        data.push({
-            x: time + i * 1000,
-            y: 0
+  
+
+  <div class="container-fluid">
+      <!-- Example row of columns -->
+      <div class="row">
+          <div class="col" id="data-X"></div>
+          <div class="col" id="data-Y"></div>
+          <div class="col" id="data-Z"></div>
+      </div>
+      <div class="row">
+        <div class="col" id="data-X2"></div>
+        <div class="col" id="data-Y2"></div>
+        <div class="col" id="data-Z2"></div>
+      </div>
+  </div>
+<!-- Graphing -->
+  <script>
+    var chartX;
+    var chartY;
+    var chartZ;
+    var chartX2;
+    var chartY2;
+    var chartZ2;
+//Get data and add to series
+    function requestData()
+    {
+        // Ajax call to get the Data from Flask
+        var requests = $.get('/data');
+
+        var tm = requests.done(function (result)
+        {
+            // X Coords
+            var seriesX = chartX.series[0],
+                shiftX = seriesX.data.length > 500;
+
+            // Y Coords
+            var seriesY = chartY.series[0],
+                shiftY = seriesY.data.length > 500;
+
+            // Y Coords
+            var seriesZ = chartZ.series[0],
+                shiftZ = seriesZ.data.length > 500;
+            // X2 Coords
+                var seriesX2 = chartX2.series[0],
+                shiftX2 = seriesX2.data.length > 500;
+            // Y2 Coords
+            var seriesY2 = chartY2.series[0],
+                shiftY2 = seriesY2.data.length > 500;
+            // Z2 Coords
+            var seriesZ2 = chartZ2.series[0],
+                shiftZ2 = seriesZ2.data.length > 500;
+
+            // Add the Point
+            // Time X
+            var data1 = [];
+            data1.push(result[0]);
+            data1.push(result[1]);
+
+
+            // Add the Point
+            // Time Y
+            var data2 = [];
+            data2.push(result[0]);
+            data2.push(result[2]);
+
+            // Add the Point
+            // Time Z
+            var data3 = [];
+            data3.push(result[0]);
+            data3.push(result[3]);
+
+            // Add the Point
+            // Time X2
+            var data4 = [];
+            data4.push(result[0]);
+            data4.push(result[4]);
+
+            // Add the Point
+            // Time Y
+            var data5 = [];
+            data5.push(result[0]);
+            data5.push(result[5]);
+
+            // Add the Point
+            // Time Z
+            var data6 = [];
+            data6.push(result[0]);
+            data6.push(result[6]);
+
+
+            chartX.series[0].addPoint(data1, true, shiftX);
+            chartY.series[0].addPoint(data2, true, shiftY);
+            chartZ.series[0].addPoint(data3, true, shiftZ);
+            
+            chartX2.series[0].addPoint(data, true, shiftX2);
+            chartY2.series[0].addPoint(data, true, shiftY2);
+            chartZ2.series[0].addPoint(data, true, shiftZ2);
+            
+
+            // call it again after one second
+            setTimeout(requestData, 200);
+
         });
     }
-    return data;
-}
+// Graphs 
+    $(document).ready(function()
+    {
+        // --------------Chart 1 ----------------------------
+        chartX = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-X',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'X Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'X Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 1 Ends - -----------------
 
-Highcharts.stockChart('container', {
-    chart: {
-        backgroundColor: 'transparent',
-        events: {
-            load: function() {
-                var series1 = this.series[0],
-                    series2 = this.series[1];
+         chartY = new Highcharts.Chart({
+                chart:
+                    {
+                        renderTo: 'data-Y',
+                        defaultSeriesType: 'area',
+                        events: {
+                            load: requestData
+                        }
+                    },
+                title:
+                    {
+                        text: 'Y Coords'
+                    },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150,
+                    maxZoom: 20 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value',
+                        margin: 80
+                    }
+                },
+                series: [{
+                    lineColor: '#1d82b8',
+                    name: 'Y Coords',
+                    data: []
+                }]
+            });
+            // --------------Chart 2 Ends ----------------------------
+        chartZ = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 3 Ends ----------------------------
+         chartX2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-X2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'X2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'X2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 4 Ends ----------------------------
+         chartY2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Y2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Y2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Y2 Coords',
+                data: []
+            }]
+        });
+         // --------------Chart 5 Ends ----------------------------
+         chartZ2 = new Highcharts.Chart({
+            chart:
+                {
+                renderTo: 'data-Z2',
+                defaultSeriesType: 'area',
+                events: {
+                    load: requestData
+                        }
+                },
+            title:
+                {
+                text: 'Z2 Coords'
+                },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+                    },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 80
+                        }
+                     },
+            series: [{
+                color : '#c23d23',
+                lineColor: '#303030',
+                name: 'Z2 Coords',
+                data: []
+            }]
+        });
 
-                setInterval(function() {
-                    var x = (new Date()).getTime(),
-                        y1 = Number(getTemp()),
-                        y2 = Number(getTemp2());
+        });
+    </script>
 
-                    series1.addPoint([x, y1], false, true);
-                    series2.addPoint([x, y2], true, true);
-
-                }, 1000);
-            }
-        }
-    },
-
-    xAxis: {
-        type: 'datetime',
-        labels: {
-            style: {},
-        },
-        tickPixelInterval: 200,
-    },
-
-    yAxis: {
-        type: 'linear',
-        labels: {
-            y: 5,
-            style: {},
-        },
-    },
-
-    series: [{
-        data: getData()
-    }, {
-        data: getData()
-    }]
-});
-</script>
+</body>
 </html>
-
