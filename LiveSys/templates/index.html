@@ -195,21 +195,17 @@
 
 <body>
 
-   
-  <div class = "main" id="newpost">
+<div class="container-fluid"> 
+    <div class="row">  
+        <div class="col">
+            <button class = "Button HIT" style="vertical-align: middle">
+                <a href="/Off_course">
+                  <span>Paddler Off Course</span>
+              </a></button>
+        </div>
+  <div class = "col" id="newpost">
     <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
   </div>
-  <!-- <div class="navbar"> -->
-      <!-- <div class="ignoreCall">
-          <a id=decline class="but_def">
-              <button id="button">
-                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
-              </button>
-          </a>
-          <div class="Placeholder">
-              <button id="Placeholder">Placeholder</button>
-          </div>
-      </div> -->
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
         <script type="text/javascript">
@@ -221,20 +217,16 @@
                 div.style.display = 'block';
             }
         };
+        
         </script>
-  <!-- </div> -->
-  <div class="container">
-    <div class="center">
-  <button class = "Button HIT" style="vertical-align: middle">
-    <a href="/Off_course">
-      <span>Paddler Off Course</span>
-  </a></button>
-  <button class = "Button HIT" style="vertical-align: middle">
-    <a href="/">
-      <span>Paddler On Course</span>
-  </a></button>
-  </div>
-  </div>
+        <div class ="col"> 
+            <button class = "Button HIT" style="vertical-align: middle">
+                <a href="/">
+                  <span>Paddler On Course</span>
+              </a></button>
+        </div>
+        </div>
+        </div>
 
 
   
