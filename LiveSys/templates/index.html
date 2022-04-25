@@ -196,12 +196,7 @@
 <body>
 
 <div class="container-fluid"> 
-    <div class="row">  
-        <div class="col">
-            <button class = "Button HIT" style="vertical-align: middle">
-                <a href="/Off_course">
-                  <span>Paddler Off Course</span>
-              </a></button>
+    
         </div>
   <div class = "col main" id="newpost">
     <img  class="camera-bg" style="width: 30%; height:30%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
@@ -219,12 +214,6 @@
         };
         
         </script>
-        <div class ="col"> 
-            <button class = "Button HIT" style="vertical-align: middle">
-                <a href="/">
-                  <span>Paddler On Course</span>
-              </a></button>
-        </div>
         </div>
         </div>
 
@@ -245,6 +234,16 @@
         <div class="col" id="data-Z2"></div>
       </div>
   </div>
+  <div class="container-fluid">
+        <button class = "Button HIT" style="vertical-align: Left">
+            <a href="/Off_course">
+              <span>Paddler Off Course</span>
+          </a></button>
+          <button class = "Button HIT" style="vertical-align: Right">
+            <a href="/">
+              <span>Paddler On Course</span>
+          </a></button>
+        </div>
 <!-- Graphing -->
   <script>
     var chartX;
