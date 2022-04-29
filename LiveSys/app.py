@@ -47,7 +47,7 @@ def video_feed():
                         mimetype = 'multipart/x-mixed-replace; boundary=frame')
 @app.route('/Off_course')
 def off_course():
-    return render_template('index2.html')
+    return render_template('index3.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)
