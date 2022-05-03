@@ -7,15 +7,15 @@ import matplotlib.pyplot as plt
 
 dbname = 'sensorsdata.db'
 conn = sqlite3.connect(dbname)
-sql = """SELECT * from TEST ORDER BY timestamp"""
+sql = """SELECT timestamp, x2, y2, z2 from ACC_data ORDER BY timestamp LIMIT 14385 OFFSET 1 """
 
 
 data = pandas.read_sql(sql, conn)
 # data.info()
 
-plt.plot(data.timestamp, data.x, label = "X Coords")
-plt.plot(data.timestamp, data.y, label = "Y Coords")
-plt.plot(data.timestamp, data.z, label = "Z Coords")
+# plt.plot(data.timestamp, data.x, label = "X Coords")
+# plt.plot(data.timestamp, data.y, label = "Y Coords")
+# plt.plot(data.timestamp, data.z, label = "Z Coords")
 plt.plot(data.timestamp, data.x2, label = "X 2 Coords")
 plt.plot(data.timestamp, data.y2, label = "Y 2 Coords")
 plt.plot(data.timestamp, data.z2, label = "Z 2 Coords")
