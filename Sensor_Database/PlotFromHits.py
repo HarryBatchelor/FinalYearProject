@@ -11,7 +11,7 @@ def PlotLeft():
     # Set output to be a list
     conn.row_factory = lambda curs, row: row[0]
     curs = conn.cursor()
-    curs.execute("SELECT DISTINCT Hits.Row_ID FROM TEST INNER JOIN Hits ON TEST.ROWID = Hits.Row_ID WHERE pole = 'LEFT' ;") #Execute SQL
+    curs.execute("SELECT DISTINCT Hits.Row_ID FROM ACC_data INNER JOIN Hits ON ACC_data.ROWID = Hits.Row_ID WHERE pole = 'LEFT' ;") #Execute SQL
     leftHits = curs.fetchall()
     # print (leftHits)
 
@@ -21,9 +21,9 @@ def PlotLeft():
         cX = conn.cursor()
         cY = conn.cursor()
         cZ = conn.cursor()
-        x = cX.execute('SELECT x from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
-        y = cY.execute('SELECT y from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
-        z = cZ.execute('SELECT z from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        x = cX.execute('SELECT x from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        y = cY.execute('SELECT y from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        z = cZ.execute('SELECT z from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
         xs = cX.fetchall()
         ys = cY.fetchall()
         zs = cZ.fetchall()
@@ -69,7 +69,7 @@ def PlotRight():
     # Set output to be a list
     conn.row_factory = lambda curs, row: row[0]
     curs = conn.cursor()
-    curs.execute("SELECT DISTINCT Hits.Row_ID FROM TEST INNER JOIN Hits ON TEST.ROWID = Hits.Row_ID WHERE pole = 'RIGHT' ;") #Execute SQL
+    curs.execute("SELECT DISTINCT Hits.Row_ID FROM ACC_data INNER JOIN Hits ON ACC_data.ROWID = Hits.Row_ID WHERE pole = 'RIGHT' ;") #Execute SQL
     RightHits = curs.fetchall()
     # print (leftHits)
 
@@ -79,9 +79,9 @@ def PlotRight():
         cX2 = conn.cursor()
         cY2 = conn.cursor()
         cZ2 = conn.cursor()
-        x2 = cX2.execute('SELECT x2 from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
-        y2 = cY2.execute('SELECT y2 from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
-        z2 = cZ2.execute('SELECT z2 from TEST WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        x2 = cX2.execute('SELECT x2 from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        y2 = cY2.execute('SELECT y2 from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
+        z2 = cZ2.execute('SELECT z2 from ACC_data WHERE ROWID < (?) ORDER BY timestamp DESC LIMIT 500', (i, ))
         x2s = cX2.fetchall()
         y2s = cY2.fetchall()
         z2s = cZ2.fetchall()
